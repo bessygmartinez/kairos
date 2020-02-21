@@ -1,10 +1,10 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "kairos",
+  "name": "kairos - time management",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "192x192",
+      "src": "kairos_favicon.png",
+      "sizes": "300x300",
       "type": "image/png"
     }
   ],
