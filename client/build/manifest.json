@@ -1,0 +1,15 @@
+{
+  "short_name": "kairos",
+  "name": "kairos - time management",
+  "icons": [
+    {
+      "src": "kairos_favicon.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
