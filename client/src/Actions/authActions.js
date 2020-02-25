@@ -14,7 +14,7 @@ export const registerUser = (userData, history) => dispatch => {
     .post("/api/users/register", userData)
     .then(res => history.push("/login")) //re-direct to login on successful register
     .catch(err =>
-        dispathc ({
+        dispatch ({
             type: GET_ERRORS,
             payload: err.response.data
         })
@@ -24,7 +24,7 @@ export const registerUser = (userData, history) => dispatch => {
 //Login - get user token
 export const loginUser = userData => dispatch => {
     axios
-    .post("/api/users/login", userDatea)
+    .post("/api/users/login", userData)
     .then(res => {
         //Save to localStorage
 
