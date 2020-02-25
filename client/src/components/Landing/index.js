@@ -7,7 +7,7 @@ class Landing extends Component {
       return (
         <div style={{ height: "75vh" }} className="container mt-5">
           <div className="row">
-            <div className="col s12 center-align">
+            <div className="col-sm-12 text-center">
               <h4>
                 <b>Welcome!</b> Please log in.
               </h4>
@@ -15,7 +15,7 @@ class Landing extends Component {
                 Use your company-supplied credentials to log in to your account.
               </p>
               <br />
-              <div className="col s6">
+              <div className="col-sm-12">
                 <Link
                   to="/register"
                   style={{
@@ -28,7 +28,7 @@ class Landing extends Component {
                   Register
                 </Link>
               </div>
-              <div className="col s6">
+              <div className="col-sm-12">
                 <Link
                   to="/login"
                   style={{
