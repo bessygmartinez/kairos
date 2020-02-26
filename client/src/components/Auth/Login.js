@@ -11,6 +11,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      role: "",
       errors: {}
     };
   }
@@ -44,7 +45,8 @@ onSubmit = e => {
 
 const userData = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      role: this.state.role
     };
 
 this.props.loginUser(userData); //since we handle the redirect within our component, we don't need to pass
