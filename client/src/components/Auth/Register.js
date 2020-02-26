@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../Actions/authActions";
 import classnames from "classnames";
+import "./Register.css";
 // import { connect } from "mongoose";
 
 class Register extends Component {
