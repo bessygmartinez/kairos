@@ -12,6 +12,9 @@ import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import PrivateRoute from "./components/Private-Route/PrivateRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
+import AdminDashboard from "./components/Dashboard/AdminDashboard";
+import ManagerDashboard from "./components/Dashboard/ManagerDashboard";
+import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
 // import NoMatch from "./pages/NoMatch";
 
 import { Provider } from "react-redux";
@@ -54,6 +57,9 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/admin-dashboard" component={AdminDashboard} />
+            <PrivateRoute exact path="/manager-dashboard" component={ManagerDashboard} />
+            <PrivateRoute exact path="/employee-dashboard" component={EmployeeDashboard} />
           </Switch>
           {/* <Route component={NoMatch} /> */}
       </div>
