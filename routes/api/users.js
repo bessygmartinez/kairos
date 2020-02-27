@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
@@ -51,7 +52,7 @@ router.post ("/register", (req, res) => {
 });
 
 // @route POST api/users/login
-// @desc Login user and return JWT toke
+// @desc Login user and return JWT token
 // @access Public
 router.post("/login", (req, res) => {
     //Form validation
@@ -94,7 +95,7 @@ router.post("/login", (req, res) => {
             (err, token) => {
                 res.json ({
                     success: true,
-                    token: `Bearer ${token}`
+                    token: `JWT ${token}`
                 });
             }
         );
