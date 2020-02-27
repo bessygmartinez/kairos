@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
@@ -31,7 +32,8 @@ router.post ("/register", (req, res) => {
             const newUser = new User({
                 name: req.body.name,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                role: req.body.role
             });
 
         // Hash password before saving in database
@@ -50,7 +52,7 @@ router.post ("/register", (req, res) => {
 });
 
 // @route POST api/users/login
-// @desc Login user and return JWT toke
+// @desc Login user and return JWT token
 // @access Public
 router.post("/login", (req, res) => {
     //Form validation
@@ -79,7 +81,8 @@ router.post("/login", (req, res) => {
                 //Create JWT Payload
                 const payload = {
                     id: user.id,
-                    name: user.name
+                    name: user.name,
+                    role: user.role
                 };
 
         // Sign token
@@ -92,7 +95,7 @@ router.post("/login", (req, res) => {
             (err, token) => {
                 res.json ({
                     success: true,
-                    token: `Bearer ${token}`
+                    token: `JWT ${token}`
                 });
             }
         );

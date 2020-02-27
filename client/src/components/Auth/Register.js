@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../Actions/authActions";
 import classnames from "classnames";
+import "./Register.css";
 // import { connect } from "mongoose";
 
 class Register extends Component {
@@ -14,6 +15,7 @@ class Register extends Component {
             email: "",
             password: "",
             password2: "",
+            role: "",
             errors: {}
         };
     }
@@ -44,7 +46,8 @@ class Register extends Component {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,
-            password2: this.state.password2
+            password2: this.state.password2,
+            role: this.state.role
         };
 
         this.props.registerUser(newUser, this.props.history);
@@ -55,7 +58,7 @@ class Register extends Component {
 
         return (
             <div className="container">
-                <div style={{ marginTop: "3rem" }} className="row">
+                <div style={{ marginTop: "2rem" }} className="row">
                     <div className="col-sm-8 offset-sm-2">
 
                         <div className="col-sm-12" style={{ paddingLeft: "11.250px" }}>
@@ -134,6 +137,55 @@ class Register extends Component {
                                 }) }
                                 />
                             </div>  
+                            </div>
+                            
+                            <div className="col-sm-12">
+                            <span className="text-danger">{errors.role}</span><br></br>
+                            <span className="mr-3">Account type:</span>
+                            <label className="radio-inline mr-4">
+                               <input
+                                onChange={this.onChange}
+                                value="admin"
+                                checked={this.state.role === "admin"}
+                                error={errors.role}
+                                id="role"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                className={classnames("", {
+                                    invalid: errors.role
+                                }) }
+                                /> Administrator
+                                </label>
+
+                                <label className="radio-inline mr-4">
+                               <input
+                                onChange={this.onChange}
+                                value="manager"
+                                checked={this.state.role === "manager"}
+                                error={errors.role}
+                                id="role"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                className={classnames("", {
+                                    invalid: errors.role
+                                }) }
+                                /> Manager
+                                </label>
+
+                               <label className="radio-inline">
+                               <input
+                                onChange={this.onChange}
+                                value="employee"
+                                checked={this.state.role === "employee"}
+                                error={errors.role}
+                                id="role"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                className={classnames("", {
+                                    invalid: errors.role
+                                }) }
+                                /> Employee
+                                </label> 
                             </div>
 
                             <div className="col-sm-12" style={{ paddingLeft: "11.250px" }}>
