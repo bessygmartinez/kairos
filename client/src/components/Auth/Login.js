@@ -22,7 +22,7 @@ class Login extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/dashboard"); //push user to dashboard when they login
     }
@@ -61,7 +61,7 @@ return (
         <div style={{ marginTop: "6rem" }} className="row">
           <div className="col-sm-8 offset-sm-2">
 
-            <div className="col-sm-12 mb-1" style={{ paddingLeft: "11.250px" }}>
+            <div className="col-sm-12 mb-2" style={{ paddingLeft: "11.250px" }}>
               <h3>
                 <b>Login</b> with your company-supplied credentials below.
               </h3>
@@ -73,6 +73,7 @@ return (
                 <label htmlFor="email">Email:</label><br></br>
                 <span className="text-danger">{errors.email}{errors.emailnotfound}</span>
                 <input
+                  autoComplete="on"
                   onChange={this.onChange}
                   value={this.state.email}
                   error={errors.email}
@@ -90,6 +91,7 @@ return (
                 <label htmlFor="password">Password:</label><br></br>
                 <span className="text-danger">{errors.password}{errors.passwordincorrect}</span>
                 <input
+                  autoComplete="on"
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
@@ -97,7 +99,7 @@ return (
                   type="password"
                   className={classnames("form-control", {
                     invalid: errors.password || errors.passwordincorrect
-                  }) }
+                  })}
                 />
               </div>
               </div>
