@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../Actions/authActions";
@@ -59,21 +58,19 @@ render() {
 
 return (
       <div className="container">
-        <div style={{ marginTop: "3rem" }} className="row">
+        <div style={{ marginTop: "6rem" }} className="row">
           <div className="col-sm-8 offset-sm-2">
 
-            <div className="col-sm-12" style={{ paddingLeft: "11.250px" }}>
-              <h4>
-                <b>Login</b> with your company-provided credentials below
-              </h4>
-              <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
-              </p>
+            <div className="col-sm-12 mb-1" style={{ paddingLeft: "11.250px" }}>
+              <h3>
+                <b>Login</b> with your company-supplied credentials below.
+              </h3>
+              <h6>If you have not been supplied any, please contact an Administrator.</h6>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
               <div className="form-group">
               <div className="input-field col-sm-12">
-                <label htmlFor="email">Email</label><br></br>
+                <label htmlFor="email">Email:</label><br></br>
                 <span className="text-danger">{errors.email}{errors.emailnotfound}</span>
                 <input
                   onChange={this.onChange}
@@ -90,7 +87,7 @@ return (
 
               <div className="form-group">
               <div className="input-field col-sm-12">
-                <label htmlFor="password">Password</label><br></br>
+                <label htmlFor="password">Password:</label><br></br>
                 <span className="text-danger">{errors.password}{errors.passwordincorrect}</span>
                 <input
                   onChange={this.onChange}
