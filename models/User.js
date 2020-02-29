@@ -18,9 +18,14 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  date: {
-    type: Date,
-    default: Date.now
-  }
+  workday: [{
+    type: Schema.Types.ObjectId,
+    ref: "workdays"
+  }],
+  schedule: [{
+    type: Schema.Types.ObjectId,
+    ref: "schedules"
+  }]
 });
+
 module.exports = User = mongoose.model("users", UserSchema);
