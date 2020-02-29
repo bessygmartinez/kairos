@@ -8,14 +8,15 @@ class Landing extends Component {
         <div style={{ height: "75vh" }} className="container mt-5">
           <div className="row">
             <div className="col-sm-12 text-center">
-              <h4>
+              <p>This is where the quote API would go. Underneath would be a company logo.</p>
+              <img src="https://via.placeholder.com/400x100" alt="Company Logo"></img><br /><br />
+              <h1>
                 <b>Welcome!</b> Please log in.
-              </h4>
+              </h1>
               <p className="flow-text grey-text text-darken-1">
                 Use your company-supplied credentials to log in to your account.
               </p>
-              <br />
-              <div className="col-sm-12">
+              {/* <div className="col-sm-12">
                 <Link
                   to="/register"
                   style={{
@@ -27,7 +28,7 @@ class Landing extends Component {
                 >
                   Register
                 </Link>
-              </div>
+              </div> */}
               <div className="col-sm-12">
                 <Link
                   to="/login"

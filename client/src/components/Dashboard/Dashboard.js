@@ -18,19 +18,19 @@ class Dashboard extends Component {
     if (user.role === "admin") {
       return (
         <div>
-          (<AdminDashboard></AdminDashboard>)
+          <AdminDashboard></AdminDashboard>
         </div>
       );
     } else if (user.role === "manager") {
       return (
         <div>
-          (<ManagerDashboard></ManagerDashboard>)
+          <ManagerDashboard></ManagerDashboard>
         </div>
       );
     } else {
       return (
         <div>
-          (<EmployeeDashboard></EmployeeDashboard>)
+          <EmployeeDashboard></EmployeeDashboard>
         </div>
       );
     }
