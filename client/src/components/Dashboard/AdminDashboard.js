@@ -28,14 +28,15 @@ class AdminDashboard extends Component {
         }
 
     return (
-        <div style={{ marginTop: "2rem", height: "75vh" }} className="container valign-wrapper">
+        <div style={{ marginTop: "2rem", height: "75vh" }} className="container">
             <div className="row">
                 <div className="col-sm-12 text-right">
                 <Moment interval={1000} format="LLLL" />
                 </div>
             </div>
-            <div className="row">
-                <div className="col-sm-12 center-align">
+
+            <div className="row mt-5 text-center">
+                <div className="col-sm-12">
                     <h4>
                         <b>{greeting}</b>, {user.name.split(" ")[0]}
                         <p className="flow-text text-secondary">
@@ -43,8 +44,12 @@ class AdminDashboard extends Component {
                             <span style={{ fontFamily: "monospace"}}>ADMIN</span> dashboard.
                         </p>
                     </h4>
+            </div>
+            </div>
 
-                <div className="col-sm-12">
+            <div className="row mt-4">
+                <div className="col-sm-12 text-center">
+                    <p>Register a new account:</p>
                 <Link
                   to="/register"
                   style={{
@@ -58,6 +63,23 @@ class AdminDashboard extends Component {
                 </Link>
               </div>
 
+              <div className="col-sm-12 text-center mt-4">
+                    <p>View all accounts to edit/delete:</p>
+                <Link
+                  to="/"
+                  style={{
+                    width: "140px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px"
+                  }}
+                  className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white"
+                >
+                  View All
+                </Link>
+              </div>
+            </div>
+
+            {/* <div className="row mt-5">
               <div className="col-sm-12">
                     <button style={{
                         width: "150px",
@@ -70,10 +92,9 @@ class AdminDashboard extends Component {
                         Logout
                     </button>
                 </div>
-                
-                </div>
+                </div> */}
+
             </div>
-        </div>
     );
   }
 }
