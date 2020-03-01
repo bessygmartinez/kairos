@@ -4,6 +4,7 @@ const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const usersController = require("../../controllers/usersController");
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -105,5 +106,16 @@ router.post("/login", (req, res) => {
         });
     });
 });
+
+// Matches with "/api/users"
+router.route("/")
+  .get(usersController.findAll)
+  .post(usersController.create);
+
+// Matches with "/api/users/:id"
+router.route("/:id")
+  .get(usersController.findById)
+  .put(usersController.update)
+  .delete(usersController.remove);
 
 module.exports = router;
