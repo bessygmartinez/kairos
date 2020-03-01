@@ -47,6 +47,18 @@ class ViewAccounts extends Component {
   render() {
     const { user } = this.props.auth;
 
+    let admins = this.state.users.filter(admin => {
+        return admin.role === "admin"
+    })
+
+    let managers = this.state.users.filter(manager => {
+        return manager.role === "manager"
+    })
+
+    let employees = this.state.users.filter(employee => {
+        return employee.role === "employee"
+    })
+
     if (user.role === "manager") {
       return (
         <div>
@@ -72,18 +84,71 @@ class ViewAccounts extends Component {
             <div className="col-sm-12">
               <h4>
                 <p className="flow-text text-secondary">
-                  Please see <span style={{ fontFamily: "monospace" }}>USERS</span> list below.
+                  Please choose role of <span style={{ fontFamily: "monospace" }}>USERS</span> you'd like to see.
                 </p>
               </h4>
             </div>
           </div>
 
-          <div className="row mt-4">
-            <div className="col-sm-12 text-center">             
-                 {this.state.users.map(user => (
-                     <Link to={"/users/" + user._id}><h2>{user.name}</h2></Link>
-                 ))}
-              
+          <div className="row mt-5">
+            <div className="col-sm-4 text-center">
+                <a className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white"
+                style={{
+                    width: "100%",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px"
+                  }}
+                data-toggle="collapse" href="#admin-list" role="button" aria-expanded="false" aria-controls="admin-list">
+                    <h3>Administrators</h3>  
+                    </a>
+                    <div className="collapse multi-collapse" id="admin-list">
+                    <div className="card card-body">          
+                 {admins.map(admin => (
+                     <Link to={"/users/" + admin._id} key={admin._id}><h5>{admin.name}</h5></Link>
+                 )
+                 )}
+                 </div>
+                 </div>
+            </div>
+
+            <div className="col-sm-4 text-center">
+            <a className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white"
+                style={{
+                    width: "100%",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px"
+                  }}
+                data-toggle="collapse" href="#manager-list" role="button" aria-expanded="false" aria-controls="manager-list">
+                <h3>Managers</h3>
+                </a>
+                <div className="collapse multi-collapse" id="manager-list">
+                    <div className="card card-body">             
+                 {managers.map(manager => (
+                     <Link to={"/users/" + manager._id} key={manager._id}><h5>{manager.name}</h5></Link>
+                 )
+                 )}
+                 </div>
+                 </div>
+            </div>
+
+            <div className="col-sm-4 text-center">
+            <a className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white"
+                style={{
+                    width: "100%",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px"
+                  }}
+                data-toggle="collapse" href="#employee-list" role="button" aria-expanded="false" aria-controls="employee-list">
+                <h3>Employees</h3>
+                </a>
+                <div className="collapse multi-collapse" id="employee-list">
+                    <div className="card card-body">             
+                 {employees.map(employee => (
+                     <Link to={"/users/" + employee._id} key={employee._id}><h5>{employee.name}</h5></Link>
+                 )
+                 )}
+                 </div>
+                 </div>
             </div>
 
             {/* <div className="col-sm-12 text-center mt-4">
