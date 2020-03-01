@@ -7,6 +7,7 @@ import classnames from "classnames";
 import ManagerDashboard from "../Dashboard/ManagerDashboard";
 import EmployeeDashboard from "../Dashboard/EmployeeDashboard";
 import "./Register.css";
+import "arrive";
 
 // import { connect } from "mongoose";
 
@@ -30,7 +31,7 @@ class Register extends Component {
     //     }
     // }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState ({
                 errors: nextProps.errors
@@ -58,8 +59,12 @@ class Register extends Component {
 
     render() {
 
-        const { user } = this.props.auth;
+        document.arrive("#role", function() {
+            let radios = document.getElementById("role")
+            radios.style["display"] = "block";
+        })
 
+        const { user } = this.props.auth;
         const { errors } = this.state;
 
         if (user.role === "manager") {
