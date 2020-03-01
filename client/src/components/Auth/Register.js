@@ -70,13 +70,13 @@ class Register extends Component {
         if (user.role === "manager") {
             return (
               <div>
-                <ManagerDashboard></ManagerDashboard>
+                <ManagerDashboard />
               </div>
             );
           } else if (user.role === "employee") {
             return (
               <div>
-                <EmployeeDashboard></EmployeeDashboard>
+                <EmployeeDashboard />
               </div>
             );
           } else {
