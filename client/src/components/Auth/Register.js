@@ -1,33 +1,37 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../Actions/authActions";
 import classnames from "classnames";
+import ManagerDashboard from "../Dashboard/ManagerDashboard";
+import EmployeeDashboard from "../Dashboard/EmployeeDashboard";
 import "./Register.css";
+import "arrive";
+
 // import { connect } from "mongoose";
 
 class Register extends Component {
     constructor() {
         super();
         this.state = {
-            name: "",
-            email: "",
-            password: "",
-            password2: "",
-            role: "",
-            errors: {}
+          name: "",
+          email: "",
+          password: "",
+          password2: "",
+          role: "",
+          errors: {}
         };
     }
 
-    componentDidMount() {
-        //If logged in and user navigates to Register page, should redirect them to dashboard
-        if (this.props.auth.isAuthenticated) {
-            this.props.history.push("/dashboard");
-        }
-    }
+    // componentDidMount() {
+    //     //If logged in and user navigates to Register page, should redirect them to dashboard
+    //     if (this.props.auth.isAuthenticated) {
+    //         this.props.history.push("/dashboard");
+    //     }
+    // }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState ({
                 errors: nextProps.errors
@@ -54,23 +58,44 @@ class Register extends Component {
     };
 
     render() {
+
+        document.arrive("#role", function() {
+            let radios = document.getElementById("role")
+            radios.style["display"] = "block";
+        })
+
+        const { user } = this.props.auth;
         const { errors } = this.state;
 
-        return (
+        if (user.role === "manager") {
+            return (
+              <div>
+                <ManagerDashboard />
+              </div>
+            );
+          } else if (user.role === "employee") {
+            return (
+              <div>
+                <EmployeeDashboard />
+              </div>
+            );
+          } else {
+            return (
+            
             <div className="container">
-                <div style={{ marginTop: "2rem" }} className="row">
+                <div style={{ marginTop: "3rem" }} className="row">
                     <div className="col-sm-8 offset-sm-2">
 
                         <div className="col-sm-12" style={{ paddingLeft: "11.250px" }}>
                             <h4>
-                                <b>Register</b> below
+                                <b>Register</b> a new account below
                             </h4>
                             <p className="grey-text text-darken-1">
-                                Already have an account? <Link to="/login">Log in</Link>
+                                Please supply credentials to employee/manager accordingly.
                             </p>
                         </div>
-                        <form noValidate onSubmit={this.onSubmit}>
-                        <div className="form-group">
+                        <form noValidate onSubmit={this.onSubmit} className="md-form">
+                        <div className="bmd-form-group-sm mb-3">
                             <div className="input-field col-sm-12">
                                 <label htmlFor="name">Name</label><br></br>
                                 <span className="text-danger">{errors.name}</span>
@@ -87,7 +112,7 @@ class Register extends Component {
                             </div>
                             </div>
 
-                            <div className="form-group">
+                            <div className="bmd-form-group-sm mb-3">
                             <div className="input-field col-sm-12">
                                <label htmlFor="email">Email</label><br></br>
                                <span className="text-danger">{errors.email}</span>
@@ -105,7 +130,7 @@ class Register extends Component {
                             </div>
                             </div>
 
-                            <div className="form-group">
+                            <div className="bmd-form-group-sm mb-3">
                             <div className="input-field col-sm-12">
                                <label htmlFor="password">Password</label><br></br>
                                <span className="text-danger">{errors.password}</span>
@@ -122,7 +147,7 @@ class Register extends Component {
                             </div>
                             </div>
                             
-                            <div className="form-group">
+                            <div className="bmd-form-group-sm">
                             <div className="input-field col-sm-12">
                                <label htmlFor="password2">Confirm Password</label><br></br>
                                <span className="text-danger">{errors.password2}</span>
@@ -139,7 +164,7 @@ class Register extends Component {
                             </div>  
                             </div>
                             
-                            <div className="col-sm-12">
+                            <div className="col-sm-12 mb-3">
                             <span className="text-danger">{errors.role}</span><br></br>
                             <span className="mr-3">Account type:</span>
                             <label className="radio-inline mr-4">
@@ -151,7 +176,7 @@ class Register extends Component {
                                 id="role"
                                 type="radio"
                                 name="inlineRadioOptions"
-                                className={classnames("", {
+                                className={classnames("bmd-radio", {
                                     invalid: errors.role
                                 }) }
                                 /> Administrator
@@ -166,7 +191,7 @@ class Register extends Component {
                                 id="role"
                                 type="radio"
                                 name="inlineRadioOptions"
-                                className={classnames("", {
+                                className={classnames("bmd-radio", {
                                     invalid: errors.role
                                 }) }
                                 /> Manager
@@ -181,11 +206,11 @@ class Register extends Component {
                                 id="role"
                                 type="radio"
                                 name="inlineRadioOptions"
-                                className={classnames("", {
+                                className={classnames("bmd-radio", {
                                     invalid: errors.role
                                 }) }
                                 /> Employee
-                                </label> 
+                                </label>
                             </div>
 
                             <div className="col-sm-12" style={{ paddingLeft: "11.250px" }}>
@@ -198,7 +223,7 @@ class Register extends Component {
                                 }}
                                 type="submit"
                                 className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white">
-                                    Sign up
+                                    Submit
                                 </button>
                             </div>
                         </form>
@@ -206,6 +231,7 @@ class Register extends Component {
                 </div>
             </div>
         )
+                            }
     }
 }
 

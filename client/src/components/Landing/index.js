@@ -1,8 +1,19 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import "./landing.css";
 
 class Landing extends Component {
+
+  componentDidMount() {
+    //if logged in and user navigates to Login page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
     render() {
       return (
         <div style={{ height: "75vh" }} className="container mt-5">
@@ -48,4 +59,16 @@ class Landing extends Component {
       );
     }
   }
-  export default Landing;
+
+  Landing.propTypes = {
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps  
+) (withRouter(Landing));

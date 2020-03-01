@@ -31,29 +31,27 @@ if (localStorage.jwtToken) {
     store.dispatch(logoutUser());
 
     //Redirect to login
-    window.location.href="./login";
+    window.location.href = "./login";
   }
 }
-
 
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
+    <Provider store={store}>
       <Router>
-      <div className="App">
-        <Nav />
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Switch>
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
-          </Switch>
-      </div>
-    </Router>
-    </Provider>
-    )
+            <Nav />
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/login" component={Login} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/register" component={Register} />
+            </Switch>
+        </Router>
+      </Provider>
+    );
   }
 }
 
 export default App;
+
