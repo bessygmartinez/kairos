@@ -68,7 +68,7 @@ return (
               <h6>If you have not been supplied any, please contact an Administrator.</h6>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
-              <div className="form-group">
+              <div className="form-group bmd-form-group">
               <div className="input-field col-sm-12">
                 <label htmlFor="email">Email:</label><br></br>
                 <span className="text-danger">{errors.email}{errors.emailnotfound}</span>
@@ -86,7 +86,7 @@ return (
                </div>
               </div>
 
-              <div className="form-group">
+              <div className="form-group bmd-form-group">
               <div className="input-field col-sm-12">
                 <label htmlFor="password">Password:</label><br></br>
                 <span className="text-danger">{errors.password}{errors.passwordincorrect}</span>
