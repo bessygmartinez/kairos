@@ -84,7 +84,8 @@ class ViewAccounts extends Component {
             <div className="col-sm-12">
               <h4>
                 <p className="flow-text text-secondary">
-                  Please choose role of <span style={{ fontFamily: "monospace" }}>USERS</span> you'd like to see.
+                  Please click on the role of the <span style={{ fontFamily: "monospace" }}>USERS</span> you'd like to see.<br></br>
+                  <small>Toggle the view by clicking on the role again.</small>
                 </p>
               </h4>
             </div>
