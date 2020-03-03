@@ -15,6 +15,9 @@ import { Provider } from "react-redux";
 import store from "./store";
 import ViewAccounts from "./pages/ViewAccounts";
 import userDetail from "./pages/UserDetail";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css"
 
 //Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -40,6 +43,21 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
+      <div>
+           <ToastContainer
+            position="top-center"
+            autoClose={1500}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
+            role="alert"
+            transition={Slide}
+            style={{"zIndex": "11000"}}
+          />
     <Provider store={store}>
       <Router>
             <Nav />
@@ -47,12 +65,13 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/register" component={Register} />
-              <PrivateRoute exact path="/viewaccounts" component={ViewAccounts} />
-              <PrivateRoute exact path="/users/:id" component={userDetail} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/viewaccounts" component={ViewAccounts} />
+              <Route exact path="/users/:id" component={userDetail} />
             </Switch>
         </Router>
       </Provider>
+      </div>
     );
   }
 }
