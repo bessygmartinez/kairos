@@ -33,12 +33,6 @@ class ViewAccounts extends Component {
             .catch(err => console.log(err));
     };
 
-    deleteUser = id => {
-        usersAPI.deleteUser(id)
-        .then(res => this.loadUsers())
-        .catch(err => console.log(err));
-    };
-
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -75,7 +69,10 @@ class ViewAccounts extends Component {
       return (
         <div style={{ marginTop: "2rem", height: "75vh" }} className="container">
           <div className="row">
-            <div className="col-sm-12 text-right">
+          <div className="col-sm-6 text-left">
+              <Link to="/"><i className="material-icons" style={{fontSize: "130%"}}>keyboard_backspace</i> back</Link>
+              </div>
+            <div className="col-sm-6 text-right">
               <Moment interval={1000} format="LLLL" />
             </div>
           </div>
