@@ -13,6 +13,8 @@ import Dashboard from "./components/Dashboard/Dashboard";
 
 import { Provider } from "react-redux";
 import store from "./store";
+import ViewAccounts from "./pages/ViewAccounts";
+import userDetail from "./pages/UserDetail";
 
 //Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -46,6 +48,8 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/register" component={Register} />
+              <PrivateRoute exact path="/viewaccounts" component={ViewAccounts} />
+              <PrivateRoute exact path="/users/:id" component={userDetail} />
             </Switch>
         </Router>
       </Provider>
@@ -54,4 +58,5 @@ class App extends Component {
 }
 
 export default App;
+
 

@@ -97,7 +97,7 @@ class Register extends Component {
                         <form noValidate onSubmit={this.onSubmit} className="md-form">
                         <div className="bmd-form-group-sm mb-3">
                             <div className="input-field col-sm-12">
-                                <label htmlFor="name">Name</label><br></br>
+                                <label htmlFor="name">Full Name</label><br></br>
                                 <span className="text-danger">{errors.name}</span>
                                 <input
                                 onChange={this.onChange}

@@ -66,7 +66,7 @@ class AdminDashboard extends Component {
               <div className="col-sm-12 text-center mt-4">
                     <p>View all accounts to edit/delete:</p>
                 <Link
-                  to="/"
+                  to="/viewaccounts"
                   style={{
                     width: "140px",
                     borderRadius: "3px",
