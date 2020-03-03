@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Moment from "react-moment";
 import { connect } from "react-redux";
 import { logoutUser } from "../../Actions/authActions";
+import MyCalendar from "../Calendar";
 
 class EmployeeDashboard extends Component {
     onLogoutClick = e => {
@@ -42,6 +43,7 @@ class EmployeeDashboard extends Component {
                             <span style={{ fontFamily: "monospace"}}>EMPLOYEE</span> dashboard.
                         </p>
                     </h4>
+                    <MyCalendar />
                     <button style={{
                         width: "150px",
                         borderRadius: "3px",
