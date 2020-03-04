@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./landing.css";
+import axios from 'axios';
 
 class Landing extends Component {
 
@@ -19,7 +20,7 @@ class Landing extends Component {
         <div style={{ height: "75vh" }} className="container mt-5">
           <div className="row">
             <div className="col-sm-12 text-center">
-              <p>This is where the quote API would go. Underneath would be a company logo.</p>
+              <p>Testing API </p>
               <img src="https://via.placeholder.com/400x100" alt="Company Logo"></img><br /><br />
               <h1>
                 <b>Welcome!</b> Please log in.
