@@ -4,22 +4,44 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./landing.css";
+import axios from 'axios';
 
 class Landing extends Component {
 
+
+  constructor(props) {
+    super(props); 
+    this.state={
+      quote:null
+    }
+    }
+  
+
+  getNewQuote() {
+    axios.get("https://api.kanye.rest")
+    .then((response)=>this.setState({quote:response.data}
+      ))
+  };
+
   componentDidMount() {
+
+    this.getNewQuote();
+
+
     //if logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
-  }
+  };
 
     render() {
       return (
         <div style={{ height: "75vh" }} className="container mt-5">
           <div className="row">
             <div className="col-sm-12 text-center">
-              <p>This is where the quote API would go. Underneath would be a company logo.</p>
+              {this.state.quote !==null && <p>{this.state.quote.quote}</p>}
+       
+              <button class="mdc-button mdc-button--outlined">  <span class="mdc-button__ripple"></span> Learn More</button>
               <img src="https://via.placeholder.com/400x100" alt="Company Logo"></img><br /><br />
               <h1>
                 <b>Welcome!</b> Please log in.
