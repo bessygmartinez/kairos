@@ -39,7 +39,7 @@ class Landing extends Component {
         <div style={{ height: "75vh" }} className="container mt-5">
           <div className="row">
             <div className="col-sm-12 text-center">
-              <p>Testing API </p>
+              {this.state.quote !==null && <p>{this.state.quote.quote}</p>}
               <img src="https://via.placeholder.com/400x100" alt="Company Logo"></img><br /><br />
               <h1>
                 <b>Welcome!</b> Please log in.
