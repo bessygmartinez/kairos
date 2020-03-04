@@ -6,7 +6,6 @@ import { registerUser } from "../../Actions/authActions";
 import classnames from "classnames";
 import ManagerDashboard from "../Dashboard/ManagerDashboard";
 import EmployeeDashboard from "../Dashboard/EmployeeDashboard";
-import { toast } from "react-toastify";
 import Moment from "react-moment";
 
 import "./Register.css";
@@ -246,7 +245,6 @@ class Register extends Component {
                       marginTop: "1rem"
                     }}
                     type="submit"
-                    onClick={() => toast.success("Account has been registered")}
                     className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white"
                   >
                     Submit

@@ -1,6 +1,7 @@
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
 
 import {
     GET_ERRORS,
@@ -12,7 +13,13 @@ import {
 export const registerUser = (userData, history) => dispatch => {
     axios
     .post("/api/users/register", userData)
-    .then(res => history.push("/login")) //re-direct to login on successful register
+    .then(res => {
+        if (res) {
+            history.push("/login")
+            toast.success("Account has been registered")
+        }
+    }
+    ) //re-direct to login on successful register
     .catch(err =>
         dispatch ({
             type: GET_ERRORS,
