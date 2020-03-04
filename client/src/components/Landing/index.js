@@ -40,6 +40,8 @@ class Landing extends Component {
           <div className="row">
             <div className="col-sm-12 text-center">
               {this.state.quote !==null && <p>{this.state.quote.quote}</p>}
+       
+              <button class="mdc-button mdc-button--outlined">  <span class="mdc-button__ripple"></span> Learn More</button>
               <img src="https://via.placeholder.com/400x100" alt="Company Logo"></img><br /><br />
               <h1>
                 <b>Welcome!</b> Please log in.
