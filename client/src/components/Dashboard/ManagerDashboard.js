@@ -44,16 +44,6 @@ class ManagerDashboard extends Component {
                         </p>
                     </h4>
                     <MyCalendar />
-                    <button style={{
-                        width: "150px",
-                        borderRadius: "3px",
-                        letterSpacing: "1.5px",
-                        marginTop: "1rem"
-                    }}
-                    onClick={this.onLogoutClick}
-                    className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white">
-                        Logout
-                    </button>
                 </div>
             </div>
         </div>

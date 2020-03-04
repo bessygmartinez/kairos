@@ -7,8 +7,8 @@ const WorkdaySchema = new Schema({
     required: true
   },
   availability: {
-    type: String,
-    default: "Available"
+    type: Boolean,
+    default: true
   },
   start: {
     type: Date,
