@@ -12,5 +12,9 @@ export default {
   // Deletes the user with the given id
   deleteUser: function(id) {
     return axios.delete("/api/users/" + id);
+  },
+  // Updates the user with the given id
+  updateUser: function(id) {
+    return axios.put("/api/users" + id)
   }
 };
