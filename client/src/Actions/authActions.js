@@ -15,11 +15,11 @@ export const registerUser = (userData, history) => dispatch => {
     .post("/api/users/register", userData)
     .then(res => {
         if (res) {
-            history.push("/login")
+            history.push("/login") //re-direct to login on successful register
             toast.success("Account has been registered")
         }
     }
-    ) //re-direct to login on successful register
+    ) 
     .catch(err =>
         dispatch ({
             type: GET_ERRORS,
