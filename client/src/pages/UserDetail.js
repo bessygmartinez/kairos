@@ -13,7 +13,7 @@ import classnames from "classnames";
 class userDetail extends Component {
   state = {
     user: {},
-    isEdit: false
+    isEdit: false,
   };
 
   //When the component mounts, grab user with id of this.props.match.params.id
@@ -32,19 +32,25 @@ class userDetail extends Component {
   };
 
   onChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
+    this.setState({ user: {
+      ...this.state.user,
+      [e.target.id]: e.target.value 
+    }});
   };
 
   onSubmit = event => {
     event.preventDefault();
 
     const userUpdate = {
-      name: this.user.name,
-      role: this.user.role,
-      email: this.user.email
+      name: this.state.user.name,
+      role: this.state.user.role,
+      email: this.state.user.email,
     };
 
-    usersAPI.updateUser(userUpdate).then(toast.success("Account info has been updated"));
+    usersAPI.updateUser(this.state.user._id, userUpdate)
+    .then(toast.success("Account has been updated"))
+    .then(this.setState({isEdit: false}))
+    .then(this.props.history.push("/users/" + this.state.user._id))
   };
 
   render() {
@@ -95,14 +101,16 @@ class userDetail extends Component {
               </div>
             </div>
   
-            <div className="row mt-3 text-center">
+            <div className="row mt-3">
               <div className="col-sm-12 col-lg-6 offset-lg-3">
+                
                 <form noValidate onSubmit={this.onSubmit} className="md-form">
                 <div className="card border-secondary mb-3">
-                  <div className="card-header input-field">
+                  <div className="card-title input-field">
+                    <div className="text-muted text-center mt-3 mb-3">Edit information below and click Submit when finished.</div>
                     <h1><input 
                     onChange={this.onChange}
-                    value={this.state.user.name}
+                    defaultValue={this.state.user.name}
                     id="name"
                     type="text"
                     className="form-control text-center"
@@ -111,13 +119,13 @@ class userDetail extends Component {
                   </div>
 
                   <div className="card-body text-secondary">
-                    <div className="card-text my-2 input-field text-secondary">
+                    <div className="card-text my-2 input-field text-secondary ml-4  ">
                       <h5>Account type:&nbsp;&nbsp;&nbsp;
                       <label className="radio-inline mr-4">
                     <input
                       onChange={this.onChange}
-                      value="admin"
-                      checked={this.state.user.role === "admin"}
+                      defaultValue="admin"
+                      defaultChecked={this.state.user.role === "admin"}
                       id="role"
                       type="radio"
                       name="inlineRadioOptions"
@@ -129,8 +137,8 @@ class userDetail extends Component {
                   <label className="radio-inline mr-4">
                     <input
                       onChange={this.onChange}
-                      value="manager"
-                      checked={this.state.user.role === "manager"}
+                      defaultValue="manager"
+                      defaultChecked={this.state.user.role === "manager"}
                       id="role"
                       type="radio"
                       name="inlineRadioOptions"
@@ -142,8 +150,8 @@ class userDetail extends Component {
                   <label className="radio-inline">
                     <input
                       onChange={this.onChange}
-                      value="employee"
-                      checked={this.state.user.role === "employee"}
+                      defaultValue="employee"
+                      defaultChecked={this.state.user.role === "employee"}
                       id="role"
                       type="radio"
                       name="inlineRadioOptions"
@@ -154,36 +162,36 @@ class userDetail extends Component {
                     </div>
 
                   
-                    <div className="card-text mb-2 input-group text-secondary ">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text"><h5>Email:&nbsp;&nbsp;&nbsp;</h5></span>
-                        <h5><input
+                    <div className="card-text my-2 input-group text-secondary">
+                      <h5 className="input-group-prepend">
+                        <span className="input-group-text ml-4 text-secondary"><h5>Email:&nbsp;&nbsp;&nbsp;</h5></span>
+                        <div><h5><input
+                        defaultValue={this.state.user.email}
                         onChange={this.onChange}
-                        value={this.state.user.email}
                         id="email"
                         type="text"
                         className="form-control"
                         style={{"fontSize": "100%"}}
-                        /></h5>
-                      </div>
+                        /></h5></div>
+                      </h5>
                     </div>
   
-                    <div className="row mt-4">
+                    <div className="row text-center">
                       <div className="col">
-                        <button
-                          id="edit-button"
-                          className="btn btn-sm bg-secondary text-white"
-                          onClick={() => onClick()}
-                          style={{
-                            width: "100px",
-                            borderRadius: "3px",
-                            letterSpacing: "1.5px",
-                            marginTop: "1rem"
-                          }}
-                        >
-                          Edit{" "}
+                      <button
+                    style={{
+                      width: "100px",
+                      borderRadius: "3px",
+                      letterSpacing: "1.5px",
+                      marginTop: "1rem"
+                    }}
+                    type="submit"
+                    onSubmit={() => this.onSubmit()}
+                    className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white"
+                  >
+                    Submit{""}
                           <i className="material-icons" style={{ fontSize: "130%" }}>
-                            edit
+                            send
                           </i>
                         </button>
                       </div>
@@ -299,11 +307,13 @@ class userDetail extends Component {
 
 userDetail.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(mapStateToProps, { logoutUser })(userDetail);
