@@ -121,7 +121,7 @@ class userDetail extends Component {
                   <div className="card-body text-secondary">
                     <div className="card-text my-2 input-field text-secondary ml-4  ">
                       <h5>Account type:&nbsp;&nbsp;&nbsp;
-                      <label className="radio-inline mr-4">
+                      {/* <label className="radio-inline mr-4">
                     <input
                       onChange={this.onChange}
                       defaultValue="admin"
@@ -132,7 +132,7 @@ class userDetail extends Component {
                       className={classnames("bmd-radio", {})}
                     />{" "}
                     Administrator
-                  </label>
+                  </label> */}
 
                   <label className="radio-inline mr-4">
                     <input
