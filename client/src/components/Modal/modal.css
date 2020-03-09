@@ -10,7 +10,7 @@
   
   
   .modal1 {
-    width: 200px;
+    width: 100%;
     background: white;
     border: 1px solid #ccc;
     -webkit-transition: 1s ease-out;
