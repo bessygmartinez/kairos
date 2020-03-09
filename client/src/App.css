@@ -5,3 +5,7 @@
 .Toastify__toast--warning {
     background: #f44336;
 }
+
+.teal-btn:focus {
+    background-color: #004d40;
+}
