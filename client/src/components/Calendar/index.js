@@ -1,55 +1,85 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux"
 import moment from "moment";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import Modal from "../Modal";
+ 
+import "./calendar.css";
 
-const localizer = momentLocalizer(moment)
+const propTypes = {};
+
+const localizer = momentLocalizer(moment);
 
 class MyCalendar extends Component {
-    constructor() {
-      super()
-      const events = []
-      const handleSelect = ({ start, end }) => {
-        const title = window.prompt('New Event name')
-        if (title)
-          this.setState({
-            events: [
-              ...this.state.events,
-              {
-                start,
-                end,
-                title,
-              },
-            ],
-          })
-      }    
-      this.state = {
-        events,
-        handleSelect
+  constructor() {
+    super();
+
+    const events = [];
+
+    const handleSelect = event => {
+      let startDate = moment(event.start).format("dddd, MMMM DD, YYYY");
+      console.log(startDate);
+
+      let endDate = moment(event.end).format("dddd, MMMM DD, YYYY");
+      console.log(endDate);
+
+      console.log(event);
+
+      if (event.slots) {
+        this.showModal(event, startDate, endDate);
+      }
+
+
+      if (event.allDay) {
+        this.showModal(event, startDate, endDate);
+      }
+    };
+    
+    this.state = {
+      events,
+      event: null,
+      handleSelect,
+      show: false
       };
-    }
+    
+  }
 
-    render() {
+  showModal = (event, startDate, endDate) => {
+    this.setState({
+      show: !this.state.show,
+      event: event,
+      start: startDate,
+      end: endDate
+    });
+  };
 
-      return (
-        <div>
-          <div style={{ height: "500px", width: "1000px" }}>
-            <Calendar
-              popup
-              selectable
-              localizer={localizer}
-              events={this.state.events}
-              views={["week", "month"]}
-              defaultDate={moment().toDate()}
-              onSelectEvent={event => alert(event.title)}
-              onSelectSlot={this.state.handleSelect}
-            />
-          </div>
+  render() {
+    return (
+      <div>
+        <div style={{ height: "500px", width: "1000px" }}>
+          <Modal
+            onClose={this.showModal}
+            show={this.state.show}
+            event={this.state.event}
+            start={this.state.start}
+            availability={event => this.state.event.availability}
+          />
+
+          <Calendar
+            popup
+            selectable
+            localizer={localizer}
+            events={this.state.events}
+            views={["week", "month"]}
+            defaultDate={moment().toDate()}
+            onSelectEvent={event => this.state.handleSelect(event)}
+            onSelectSlot={slotInfo => this.state.handleSelect(slotInfo)}
+            id="TheCalendar"
+          />
         </div>
-      );
-    }
+      </div>
+    );
+  }
 }
 
 MyCalendar.propTypes = {
@@ -61,5 +91,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps) (MyCalendar);
-
-

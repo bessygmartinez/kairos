@@ -1,0 +1,60 @@
+.modal-container {
+    position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 2000;
+	visibility: hidden;
+	backface-visibility: hidden;
+	transform: translateX(-50%) translateY(-50%);
+}
+  
+  
+  .modal1 {
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    -webkit-transition: 1s ease-out;
+    transition: 1s ease-out;
+    box-shadow: -2rem 2rem 2rem rgba(0, 0, 0, 0.2);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal1.off{
+    opacity: 0;
+    visibility: hidden;
+    -webkit-filter: blur(8px);
+            filter: blur(8px);
+    -webkit-transform: scale(0.33);
+            transform: scale(0.33);
+    box-shadow: 1rem 0 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .modal1 h2 {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem;
+    margin: 0;
+  }
+  .modal1 .content {
+    padding: 1rem;
+  }
+  .modal .actions {
+    border-top: 1px solid #ccc;
+    background: #eee;
+    padding: 0.5rem 1rem;
+  }
+  .modal1 .actions button {
+    border: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    line-height: 1;
+  }
+  
+  #centered-toggle-button {
+    position: absolute;
+    left: 50%
+  }

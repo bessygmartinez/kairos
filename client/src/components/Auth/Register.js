@@ -187,7 +187,7 @@ class Register extends Component {
                   <span className="text-danger">{errors.role}</span>
                   <br></br>
                   <span className="mr-3">Account type:</span>
-                  <label className="radio-inline mr-4">
+                  {/* <label className="radio-inline mr-4">
                     <input
                       onChange={this.onChange}
                       value="admin"
@@ -201,7 +201,7 @@ class Register extends Component {
                       })}
                     />{" "}
                     Administrator
-                  </label>
+                  </label> */}
 
                   <label className="radio-inline mr-4">
                     <input
