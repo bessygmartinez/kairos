@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Modal from "../Modal";
