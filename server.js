@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 
 const users = require("./routes/api/users");
-const books = require("./routes/api/books");
+const workdays = require("./routes/api/workdays");
 
 const routes = require("./routes");
 const app = express();
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-app.use("/api/books", books);
+app.use("/api/workdays", workdays);
 app.use("/api/users", users);
 
 //DB Config
