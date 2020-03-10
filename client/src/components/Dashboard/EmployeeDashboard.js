@@ -11,8 +11,9 @@ class EmployeeDashboard extends Component {
         this.props.logoutUser();
     };
 
+
     render() {
-        const { user } = this.props.auth;
+        const { user } = this.props.auth;    
 
                 //For greeting:
                 const today = new Date()
@@ -43,7 +44,7 @@ class EmployeeDashboard extends Component {
                             <span style={{ fontFamily: "monospace"}}>EMPLOYEE</span> dashboard.
                         </p>
                     </h4>
-                    <MyCalendar />
+                    <MyCalendar /> 
                 </div>
             </div>
         </div>

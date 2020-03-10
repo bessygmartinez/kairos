@@ -1,31 +1,16 @@
-import React, { Component } from 'react';
-import moment from 'moment';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux"
+import moment from "moment";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
-const propTypes = {}
 
 const localizer = momentLocalizer(moment)
 
 class MyCalendar extends Component {
     constructor() {
       super()
-      const events = [
-        { 
-            id: 0,
-            title: "Stephen - Unavailable",
-            allDay: true,
-            start: new Date("2020-03-02"),
-            end: new Date("2020-03-25")
-        },
-        {
-          id: 1,
-          title: "Stephen - Available",
-          allDay: true,
-          start: new Date("2020-04-01"),
-          end: new Date("2020-04-04")
-        }
-      ]
+      const events = []
       const handleSelect = ({ start, end }) => {
         const title = window.prompt('New Event name')
         if (title)
@@ -47,6 +32,7 @@ class MyCalendar extends Component {
     }
 
     render() {
+
       return (
         <div>
           <div style={{ height: "500px", width: "1000px" }}>
@@ -66,8 +52,14 @@ class MyCalendar extends Component {
     }
 }
 
-MyCalendar.propTypes = propTypes
+MyCalendar.propTypes = {
+  auth: PropTypes.object.isRequired
+};
 
-export default MyCalendar;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps) (MyCalendar);
 
 
