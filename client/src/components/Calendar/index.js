@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Modal from "../Modal";
- 
 import "./calendar.css";
 
 const propTypes = {};
@@ -31,7 +30,6 @@ class MyCalendar extends Component {
         this.showModal(event, startDate, endDate);
       }
 
-
       if (event.allDay) {
         this.showModal(event, startDate, endDate);
       }
@@ -43,7 +41,6 @@ class MyCalendar extends Component {
       handleSelect,
       show: false
       };
-    
   }
 
   showModal = (event, startDate, endDate) => {
@@ -56,6 +53,7 @@ class MyCalendar extends Component {
   };
 
   render() {
+        
     return (
       <div>
         <div style={{ height: "500px", width: "1000px" }}>
@@ -64,7 +62,7 @@ class MyCalendar extends Component {
             show={this.state.show}
             event={this.state.event}
             start={this.state.start}
-            availability={event => this.state.event.availability}
+            availability={event => this.state.event.availability ? this.state.event.availability : null}
           />
 
           <Calendar
