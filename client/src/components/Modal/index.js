@@ -68,7 +68,7 @@ class Modal extends React.Component {
                     type="checkbox"
                     onChange={this.onChange}
                     onSubmit={this.onSubmit}
-                    checked={this.props.event.availability ? this.props.event.availability : null}
+                    checked={this.state.switch}
                     value={this.state.switch}
                     id="switch"
                   />
