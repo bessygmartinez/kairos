@@ -21,23 +21,7 @@ class MyCalendar extends Component {
   constructor() {
     super();
 
-    const events = [
-      {
-        _id: {
-            "$oid": "5e69142f1ca218a600be2cab"
-        },
-        availability: false,
-        allDay: true,
-        title: "Dre",
-        start: {
-            "$date": "2020-03-02T00:00:00.000Z"
-        },
-        end: {
-            "$date": "2020-03-02T00:00:00.000Z"
-        },
-        "__v": 0
-    }
-    ];
+    const events = [];
 
     const handleSelect = event => {
 
@@ -60,6 +44,7 @@ class MyCalendar extends Component {
       events,
       event: null,
       handleSelect,
+      show: false
     };
     
   }
@@ -80,9 +65,10 @@ class MyCalendar extends Component {
     return (
       <div>
         <div style={{ height: "500px", width: "1000px" }}>
-          {this.state.show? <Modal
+          {this.state.show ? <Modal
             onClose={this.showModal}
             onSubmit={this.onSubmit}
+            show={this.state.show}
             event={this.state.event}
             startDate={this.state.startDate}
             endDate={this.state.endDate}
