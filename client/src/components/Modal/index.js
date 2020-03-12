@@ -12,7 +12,7 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
-    this.setState = { switch: this.props.event.availability}
+    this.setState({switch: this.props.event.availability})
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -26,9 +26,7 @@ class Modal extends React.Component {
   };
 
   onChange = e => {
-    this.setState({
-      switch: !this.state.switch
-    });
+    this.setState({ switch: !this.state.switch })
   };
 
   onSubmit = e => {
