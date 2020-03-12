@@ -2,6 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import workdaysAPI from "../../utils/workdaysAPI";
 import "./modal.css";
+import { connect } from "react-redux";
 
 class Modal extends React.Component {
   constructor() {
@@ -67,7 +68,7 @@ class Modal extends React.Component {
                     type="checkbox"
                     onChange={this.onChange}
                     onSubmit={this.onSubmit}
-                    checked={this.props.event.availability}
+                    checked={this.props.event.availability ? this.props.event.availability : null}
                     value={this.state.switch}
                     id="switch"
                   />
@@ -90,4 +91,8 @@ class Modal extends React.Component {
   }
 }
 
-export default Modal;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(Modal);
