@@ -69,14 +69,15 @@ router.post("/login", (req, res) => {
     const password = req.body.password;
 
     //Find user by email
-    User.findOne({ email }).then(user => {
+    User.findOne({ email }).populate('workday').then(user => {
         //Check if user exists
         if (!user) {
             return res.status(404).json({ emailnotfound: "Email not found" });
         }
 
         // Check password
-        bcrypt.compare(password, user.password).then(isMatch => {
+        bcrypt.compare(password, user.password)
+        .then(isMatch => {
             if (isMatch) {
                 //User matched
                 //Create JWT Payload
