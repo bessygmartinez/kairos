@@ -19,11 +19,11 @@ const UserSchema = new Schema({
     required: true
   },
   workday: [{
-    type: Schema.Types.ObjectId,
+    type: Schema.Types.Mixed,
     ref: "workdays"
   }],
   schedule: [{
-    type: Schema.Types.ObjectId,
+    type: Schema.Types.Mixed,
     ref: "schedules"
   }]
 });
