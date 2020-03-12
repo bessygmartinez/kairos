@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import workdaysAPI from "../../utils/workdaysAPI";
 import "./modal.css";
@@ -10,23 +8,20 @@ class Modal extends React.Component {
     super();
     this.state = {
       switch: ""
-    };
+    }  
   }
 
   componentDidMount() {
+    this.setState = { switch: this.props.event.availability}
+  }
 
-    if (this.props.event == null) {
-      return this.setState({ switch: true })
-    } else if (this.props.event.availability === false) {
-      return this.setState({ switch: false });
-    } else if (this.props.event.availability === true) {
-      return this.setState({ switch: true });
-    } else if (this.props.event.slots) {
-      return this.setState({ switch: true })
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.event.availability === true){
+      this.setState({ switch: nextProps.event.availability })
     }
   }
+
   onClose = e => {
-    e.persist();
     this.props.onClose && this.props.onClose(e);
   };
 
@@ -74,7 +69,7 @@ class Modal extends React.Component {
                     type="checkbox"
                     onChange={this.onChange}
                     onSubmit={this.onSubmit}
-                    checked={this.state.switch}
+                    checked={this.props.event.availability}
                     value={this.state.switch}
                     id="switch"
                   />
@@ -97,14 +92,4 @@ class Modal extends React.Component {
   }
 }
 
-Modal.propTypes = {
-  user: PropTypes.object,
-  event: PropTypes.object
-};
-
-const mapStateToProps = state => ({
-  auth: state.auth,
-  event: state.event
-});
-
-export default connect(mapStateToProps)(Modal);
+export default Modal;
