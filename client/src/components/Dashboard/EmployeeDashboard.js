@@ -44,7 +44,7 @@ class EmployeeDashboard extends Component {
                             <span style={{ fontFamily: "monospace"}}>EMPLOYEE</span> dashboard.
                         </p>
                     </h4>
-                    <MyCalendar /> 
+                    <MyCalendar events={this.props.auth.user.workday}/> 
                 </div>
             </div>
         </div>
