@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
+  // Gets all workdays
   getAllEmployeeWorkdays: function() {
     return axios.get("/api/manager/workdays/");
   },
-  // Gets the book with the given id
+  // Gets the workday with the given id
   getOneWorkday: function(id) {
     return axios.get("/api/workdays/" + id);
   },
-  // Deletes the book with the given id
+  // Deletes the workday with the given id
   deleteWorkday: function(id) {
     return axios.delete("/api/workdays/" + id);
   },
-  // Saves a book to the database
-  saveWorkday: function(workdayData) {
-    return axios.post("/api/workdays", workdayData);
+  // Saves a workday to the database
+  saveWorkday: function(id, workdaysUpdate) {
+    return axios.post("/api/workdays/" + id, workdaysUpdate);
   }
 };

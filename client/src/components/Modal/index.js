@@ -1,4 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
+import workdaysAPI from "../../utils/workdaysAPI";
 import "./modal.css";
 
 class Modal extends React.Component {
@@ -9,14 +13,18 @@ class Modal extends React.Component {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextprops) {
-    if (nextprops.event.availability === false) {
-      this.setState({ switch: false });
-    } else {
-      this.setState({ switch: true });
+  componentDidMount() {
+
+    if (this.props.event == null) {
+      return this.setState({ switch: true })
+    } else if (this.props.event.availability === false) {
+      return this.setState({ switch: false });
+    } else if (this.props.event.availability === true) {
+      return this.setState({ switch: true });
+    } else if (this.props.event.slots) {
+      return this.setState({ switch: true })
     }
   }
-
   onClose = e => {
     e.persist();
     this.props.onClose && this.props.onClose(e);
@@ -28,11 +36,23 @@ class Modal extends React.Component {
     });
   };
 
-  render() {
-    if (!this.props.show) {
-      return null;
-    }
+  onSubmit = e => {
+    const workdaysUpdate = {
+      title: this.props.auth.user.name,
+      availability: this.state.switch,
+      start: this.props.startDate,
+      end: this.props.endDate,
+      allDay: true
+    };
 
+    workdaysAPI
+      .saveWorkday(this.props.auth.user.id, workdaysUpdate)
+      .then(toast.success("Schedule has been updated"))
+    
+    this.onClose()
+  }
+
+  render() {
     var buttons = document.querySelectorAll(".toggle-button");
     var modal = document.querySelector("#modal1");
 
@@ -45,7 +65,7 @@ class Modal extends React.Component {
     return (
       <div className="modal-container">
         <div className="modal1" id="modal1">
-          <h2>{this.props.start}</h2>
+        <h2>{this.props.startView} - {this.props.endView}</h2>
           <div className="content">
             <form>
               <div className="switch mt-3">
@@ -53,6 +73,7 @@ class Modal extends React.Component {
                   <input
                     type="checkbox"
                     onChange={this.onChange}
+                    onSubmit={this.onSubmit}
                     checked={this.state.switch}
                     value={this.state.switch}
                     id="switch"
@@ -65,7 +86,7 @@ class Modal extends React.Component {
           <div className="actions">
             <button
               className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white toggle-button ml-3 mb-3"
-              onClick={this.onClose}
+              onClick={this.onSubmit}
             >
               Submit
             </button>
@@ -76,4 +97,14 @@ class Modal extends React.Component {
   }
 }
 
-export default Modal;
+Modal.propTypes = {
+  user: PropTypes.object,
+  event: PropTypes.object
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  event: state.event
+});
+
+export default connect(mapStateToProps)(Modal);

@@ -6,37 +6,41 @@ const db = require("../models");
 
 mongoose.connect(key);
 
-const workdaysSeed = [
+const createWorkdaysSeed = function(id, event) {
+  return db.Workday.create(event).then(docEvent => {
+    console.log("\n>> Created event:\n", docEvent);
+
+    return db.User.findByIdAndUpdate('5e69734235acdea5384b1406', {$push: {workday: docEvent._id}}, {new: true, useFindAndModify: false});
+  })
+}
+
+createWorkdaysSeed('5e69734235acdea5384b1406',
   {  
     title: "Dre",
+    availability: false,
     start: "2020-03-02",
     end: "2020-03-02",
     allDay: true,
     availability: false
-  },
-  {
+  }
+)
+
+createWorkdaysSeed('5e69734235acdea5384b1406',
+{
     title: "Dre",
     start: "2020-03-31",
     end: "2020-03-31",
     allDay: true,
     availability: true
-  },
-  {
-    title: "Dre",
-    start: "2020-03-18",
-    end: "2020-03-18",
-    allDay: true,
-    availability: false
   }
-]
+)
 
-db.User
-  .then(() => db.User.findByIdAndUpdate(("5e56c9317bd8760db89acae0", workdaysSeed))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+createWorkdaysSeed('5e69734235acdea5384b1406',
+{
+    title: "Dre",
+    availability: false,
+    start: "2020-03-02",
+    end: "2020-03-02",
+    allDay: true
+  }
+)

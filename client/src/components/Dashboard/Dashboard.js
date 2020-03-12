@@ -44,7 +44,6 @@ Dashboard.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  role: state.role
 });
 
 export default connect(mapStateToProps, { logoutUser })(Dashboard);

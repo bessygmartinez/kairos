@@ -19,12 +19,12 @@ const UserSchema = new Schema({
     required: true
   },
   workday: [{
-    type: Schema.Types.ObjectId,
-    ref: "workdays"
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'workdays'
   }],
   schedule: [{
-    type: Schema.Types.ObjectId,
-    ref: "schedules"
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'schedules'
   }]
 });
 
