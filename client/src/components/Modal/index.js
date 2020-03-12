@@ -13,7 +13,10 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.event.availability === false) {
     this.setState({switch: this.props.event.availability})
+    }
+    else {this.setState({switch: true})}
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -92,7 +95,7 @@ class Modal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps)(Modal);
