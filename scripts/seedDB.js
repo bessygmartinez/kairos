@@ -17,6 +17,7 @@ const createWorkdaysSeed = function(id, event) {
 createWorkdaysSeed('5e69734235acdea5384b1406',
   {  
     title: "Dre",
+    availability: false,
     start: "2020-03-02",
     end: "2020-03-02",
     allDay: true,
@@ -37,9 +38,9 @@ createWorkdaysSeed('5e69734235acdea5384b1406',
 createWorkdaysSeed('5e69734235acdea5384b1406',
 {
     title: "Dre",
-    start: "2020-03-18",
-    end: "2020-03-18",
-    allDay: true,
-    availability: false
+    availability: false,
+    start: "2020-03-02",
+    end: "2020-03-02",
+    allDay: true
   }
 )

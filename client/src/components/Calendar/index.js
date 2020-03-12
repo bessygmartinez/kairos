@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import moment from "moment";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Modal from "../Modal";
-import "./calendar.css";
 
-const propTypes = {};
+import "./calendar.css";
 
 const localizer = momentLocalizer(moment);
 
@@ -23,21 +21,38 @@ class MyCalendar extends Component {
   constructor() {
     super();
 
-    const events = [];
+    const events = [
+      {
+        _id: {
+            "$oid": "5e69142f1ca218a600be2cab"
+        },
+        availability: false,
+        allDay: true,
+        title: "Dre",
+        start: {
+            "$date": "2020-03-02T00:00:00.000Z"
+        },
+        end: {
+            "$date": "2020-03-02T00:00:00.000Z"
+        },
+        "__v": 0
+    }
+    ];
 
     const handleSelect = event => {
-      let startDate = moment(event.start).format("dddd, MMMM DD, YYYY");
 
-      let endDate = moment(event.end).format("dddd, MMMM DD, YYYY");
+      let startView = moment(event.start).format("dddd, MMMM DD, YYYY");
+      let startDate = moment(event.start).format("YYYY/MM/DD");
 
-      console.log(event);
+      let endView = moment(event.end).format("dddd, MMMM DD, YYYY");
+      let endDate = moment(event.end).format("YYYY/MM/DD");
 
       if (event.slots) {
-        this.showModal(event, startDate, endDate);
+        this.showModal(event, startDate, endDate, startView, endView);
       }
 
       if (event.allDay) {
-        this.showModal(event, startDate, endDate);
+        this.showModal(event, startDate, endDate, startView, endView);
       }
     };
     
@@ -45,15 +60,18 @@ class MyCalendar extends Component {
       events,
       event: null,
       handleSelect,
-      show: false
-      };
+    };
+    
   }
 
-  showModal = (event, startDate) => {
+  showModal = (event, startDate, endDate, startView, endView) => {
     this.setState({
       show: !this.state.show,
       event: event,
-      start: startDate,
+      startView: startView,
+      endView: endView,
+      startDate: startDate,
+      endDate: endDate
     });
   };
 
@@ -64,8 +82,12 @@ class MyCalendar extends Component {
         <div style={{ height: "500px", width: "1000px" }}>
           {this.state.show? <Modal
             onClose={this.showModal}
+            onSubmit={this.onSubmit}
             event={this.state.event}
-            start={this.state.start}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+            startView={this.state.startView}
+            endView={this.state.endView}
           /> : null}
 
           <Calendar
@@ -86,11 +108,12 @@ class MyCalendar extends Component {
 }
 
 MyCalendar.propTypes = {
-  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  events: state.events,
+  availability: state.availability
 });
 
 export default connect(mapStateToProps) (MyCalendar);

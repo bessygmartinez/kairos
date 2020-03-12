@@ -3,16 +3,12 @@ const workdaysController = require("../../controllers/workdaysController");
 
 const Workday = require("../../models/Workday");
 
-// Matches with "/api/books"
-router.route("/dashboard")
-  .get(workdaysController.findById)
-  .put(workdaysController.update);
-
-// Matches with "/api/books/:id"
+// Matches with "/api/workdays"
 router
   .route("/:id")
   .get(workdaysController.findById)
-  .put(workdaysController.update)
-  .delete(workdaysController.remove);
+  .post(workdaysController.findByIdAndInsertWorkday)
+  .put(workdaysController.update);
+
 
 module.exports = router;
