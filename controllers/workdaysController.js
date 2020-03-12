@@ -5,6 +5,7 @@ module.exports = {
   findById: function(req, res) {
     db.User
       .findById(id)
+      .populate('workday')
       .then(dbModel => res.json(dbModel))
       console.group(dbModel)
       .catch(err => res.status(422).json(err));
@@ -24,13 +25,15 @@ module.exports = {
     // let token = JSON.parse(localStorage.getItem("jwtToken"));
     // const user = token.data.id;
     db.User
-      .findOneAndUpdate(token, req.body)
+      .findOneAndUpdate(req.body)
+      .populate('workday')
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
     db.User
       .findById({ _id: req.params.id })
+      .populate('workday')
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

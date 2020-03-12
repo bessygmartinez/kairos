@@ -10,6 +10,14 @@ import "./calendar.css";
 const localizer = momentLocalizer(moment);
 
 class MyCalendar extends Component {
+
+  componentDidMount () {
+    this.setState({
+      ...this.state,
+      events: this.props.auth.user.workdays
+    })
+        
+  }
   constructor() {
     super();
 
@@ -32,6 +40,7 @@ class MyCalendar extends Component {
     ];
 
     const handleSelect = event => {
+
       let startView = moment(event.start).format("dddd, MMMM DD, YYYY");
       let startDate = moment(event.start).format("YYYY/MM/DD");
 
@@ -51,7 +60,6 @@ class MyCalendar extends Component {
       events,
       event: null,
       handleSelect,
-      show: false,
     };
     
   }
@@ -68,20 +76,19 @@ class MyCalendar extends Component {
   };
 
   render() {
+        
     return (
       <div>
         <div style={{ height: "500px", width: "1000px" }}>
-          <Modal
+          {this.state.show? <Modal
             onClose={this.showModal}
             onSubmit={this.onSubmit}
-            show={this.state.show}
             event={this.state.event}
             startDate={this.state.startDate}
             endDate={this.state.endDate}
             startView={this.state.startView}
             endView={this.state.endView}
-            user={this.state.user}
-          />
+          /> : null}
 
           <Calendar
             popup

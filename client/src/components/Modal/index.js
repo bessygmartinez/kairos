@@ -13,14 +13,18 @@ class Modal extends React.Component {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextprops) {
-    if (nextprops.availability === false) {
-      this.setState({ switch: false });
-    } else {
-      this.setState({ switch: true });
+  componentDidMount() {
+
+    if (this.props.event == null) {
+      return this.setState({ switch: true })
+    } else if (this.props.event.availability === false) {
+      return this.setState({ switch: false });
+    } else if (this.props.event.availability === true) {
+      return this.setState({ switch: true });
+    } else if (this.props.event.slots) {
+      return this.setState({ switch: true })
     }
   }
-
   onClose = e => {
     e.persist();
     this.props.onClose && this.props.onClose(e);
@@ -49,10 +53,6 @@ class Modal extends React.Component {
   }
 
   render() {
-    if (!this.props.show) {
-      return null;
-    }
-
     var buttons = document.querySelectorAll(".toggle-button");
     var modal = document.querySelector("#modal1");
 
