@@ -1,63 +1,35 @@
 import React from "react";
-import { toast } from "react-toastify";
-import workdaysAPI from "../../utils/workdaysAPI";
 import "./modal.css";
 import { connect } from "react-redux";
 
 class Modal extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      switch: ""
-    }  
-  }
 
-  componentDidMount() {
-    this.setState({switch: this.props.event.availability})
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     user: this.props.auth.user
+  //   })
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.event.availability === true){
-      this.setState({ switch: nextProps.event.availability })
-    }
-  }
+  //   if (this.props.event.availability === false){
+  //   this.setState({switch: this.props.event.availability})
+  //   }
+  //   else {this.setState({switch: true})}
+  // }
 
-  onClose = e => {
-    this.props.onClose && this.props.onClose(e);
-  };
-
-  onChange = e => {
-    this.setState({ switch: !this.state.switch })
-  };
-
-  onSubmit = e => {
-    const workdaysUpdate = {
-      title: this.props.auth.user.name,
-      availability: this.state.switch,
-      start: this.props.startDate,
-      end: this.props.endDate,
-      allDay: true
-    };
-
-    workdaysAPI
-      .saveWorkday(this.props.auth.user.id, workdaysUpdate)
-      .then(toast.success("Schedule has been updated"))
-
-      workdaysAPI.getOneEmployeeWorkdays(this.props.auth.user.id)
-      .then(console.log(this.props.auth.user.workdays))
-
-    this.onClose()
-  }
+  // UNSAFE_componentWillReceiveProps(nextProps) {
+  //   if (nextProps.event.availability === true){
+  //     this.setState({ switch: nextProps.event.availability })
+  //   }
+  // }
 
   render() {
-    var buttons = document.querySelectorAll(".toggle-button");
-    var modal = document.querySelector("#modal1");
+      var buttons = document.querySelectorAll(".toggle-button");
+      var modal = document.querySelector("#modal1");
 
-    [].forEach.call(buttons, function(button) {
-      button.addEventListener("click", function() {
-        modal.classList.toggle("off");
+      [].forEach.call(buttons, function(button) {
+        button.addEventListener("click", function() {
+          modal.classList.toggle("off");
+        });
       });
-    });
 
     return (
       <div className="modal-container">
@@ -69,10 +41,10 @@ class Modal extends React.Component {
                 <label className="text-secondary">
                   <input
                     type="checkbox"
-                    onChange={this.onChange}
-                    onSubmit={this.onSubmit}
-                    checked={this.state.switch}
-                    value={this.state.switch}
+                    onSubmit={this.props.onSubmit}
+                    onChange={this.props.onChange}
+                    checked={this.props.switch}
+                    value={this.props.switch}
                     id="switch"
                   />
                   Available
@@ -83,7 +55,7 @@ class Modal extends React.Component {
           <div className="actions">
             <button
               className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white toggle-button ml-3 mb-3"
-              onClick={this.onSubmit}
+              onClick={this.props.onSubmit}
             >
               Submit
             </button>
@@ -95,7 +67,7 @@ class Modal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps)(Modal);
