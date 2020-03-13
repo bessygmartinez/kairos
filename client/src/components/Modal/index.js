@@ -1,63 +1,40 @@
 import React from "react";
-import { toast } from "react-toastify";
-import workdaysAPI from "../../utils/workdaysAPI";
 import "./modal.css";
 import { connect } from "react-redux";
 
 class Modal extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      switch: ""
-    }  
-  }
 
   componentDidMount() {
-    if (this.props.event.availability === false) {
-    this.setState({switch: this.props.event.availability})
+    this.setState({ switch: this.props.switch})
     }
-    else {this.setState({switch: true})}
-  }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.event.availability === true){
-      this.setState({ switch: nextProps.event.availability })
-    }
-  }
+  //   if (this.props.event.availability === false){
+  //   this.setState({switch: this.props.event.availability})
+  //   }
+  //   else {this.setState({switch: true})}
+  // }
 
-  onClose = e => {
-    this.props.onClose && this.props.onClose(e);
-  };
-
-  onChange = e => {
-    this.setState({ switch: !this.state.switch })
-  };
-
-  onSubmit = e => {
-    const workdaysUpdate = {
-      title: this.props.auth.user.name,
-      availability: this.state.switch,
-      start: this.props.startDate,
-      end: this.props.endDate,
-      allDay: true
-    };
-
-    workdaysAPI
-      .saveWorkday(this.props.auth.user.id, workdaysUpdate)
-      .then(toast.success("Schedule has been updated"))
-    
-    this.onClose()
-  }
+  // UNSAFE_componentWillReceiveProps(nextProps) {
+  //   if (nextProps.event.availability === true){
+  //     this.setState({ switch: nextProps.switch })
+  //   }
+  // }
 
   render() {
-    var buttons = document.querySelectorAll(".toggle-button");
-    var modal = document.querySelector("#modal1");
+      let button = document.getElementById("modal-button");
+      let modal = document.querySelector("#modal1");
 
-    [].forEach.call(buttons, function(button) {
-      button.addEventListener("click", function() {
-        modal.classList.toggle("off");
-      });
-    });
+      if(button){
+        button.addEventListener("click", function() {
+          modal.classList.add("off")
+        })
+      };
+
+      // [].forEach.call(buttons, function(button) {
+      //   button.addEventListener("click", function() {
+      //     modal.classList.toggle("off");
+      //   });
+      // });
 
     return (
       <div className="modal-container">
@@ -69,10 +46,10 @@ class Modal extends React.Component {
                 <label className="text-secondary">
                   <input
                     type="checkbox"
-                    onChange={this.onChange}
-                    onSubmit={this.onSubmit}
-                    checked={this.state.switch}
-                    value={this.state.switch}
+                    onSubmit={this.props.onSubmit}
+                    onChange={this.props.onChange}
+                    checked={this.props.switch}
+                    value={this.props.switch}
                     id="switch"
                   />
                   Available
@@ -81,9 +58,9 @@ class Modal extends React.Component {
             </form>
           </div>
           <div className="actions">
-            <button
+            <button id="modal-button"
               className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white toggle-button ml-3 mb-3"
-              onClick={this.onSubmit}
+              onClick={this.props.onSubmit}
             >
               Submit
             </button>

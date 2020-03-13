@@ -13,8 +13,8 @@
     width: 100%;
     background: white;
     border: 1px solid #ccc;
-    -webkit-transition: 1s ease-out;
-    transition: 1s ease-out;
+    -webkit-transition: 0.7s ease-out;
+    transition: 0.7s ease-out;
     box-shadow: -2rem 2rem 2rem rgba(0, 0, 0, 0.2);
     -webkit-filter: blur(0);
             filter: blur(0);
@@ -42,7 +42,7 @@
   .modal1 .content {
     padding: 1rem;
   }
-  .modal .actions {
+  .modal1 .actions {
     border-top: 1px solid #ccc;
     background: #eee;
     padding: 0.5rem 1rem;
@@ -50,8 +50,7 @@
   .modal1 .actions button {
     border: 0;
     padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    line-height: 1;
+    margin-top: 1rem;
   }
   
   #centered-toggle-button {
