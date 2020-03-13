@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export default {
-  // Gets all workdays
-  getAllEmployeeWorkdays: function() {
-    return axios.get("/api/manager/workdays/");
+  // Gets all workdays w/ user id
+  getAllThisEmployeeWorkdays: function(id) {
+    return axios.get("/api/workdays/allworkdays/" + id);
   },
   // Gets the workday with the given id
   getOneWorkday: function(id) {
@@ -13,7 +13,11 @@ export default {
   deleteWorkday: function(id) {
     return axios.delete("/api/workdays/" + id);
   },
-  // Saves a workday to the database
+  // UPDATES an existing workday with the given id
+  updateWorkday: function(id) {
+    return axios.delete("/api/workdays/" + id);
+  },
+  // POST a workday to the database
   saveWorkday: function(id, workdaysUpdate) {
     return axios.post("/api/workdays/" + id, workdaysUpdate);
   }

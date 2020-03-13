@@ -14,15 +14,20 @@ const localizer = momentLocalizer(moment);
 
 class MyCalendar extends Component {
   componentDidMount() {
-    this.setState({
-      ...this.state,
-      events: this.props.auth.user.workdays
-    });
+    workdaysAPI
+      .getAllThisEmployeeWorkdays(this.props.auth.user.id)
+      .then(dbModel => 
+        this.setState({
+          events: dbModel
+        })
+      );
   }
+
   constructor() {
     super();
 
     const events = [];
+    
 
     const handleSelect = event => {
       let startView = moment(event.start).format("dddd, MMMM DD, YYYY");
