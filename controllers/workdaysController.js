@@ -2,13 +2,16 @@ const db = require("../models");
 
 // Defining methods for the workdaysController
 module.exports = {
-  findById: function(req, res) {
-    db.User
-      .findById(id)
-      .populate('workday')
-      .then(dbModel => res.json(dbModel))
-      console.group(dbModel)
-      .catch(err => res.status(422).json(err));
+  findAllById: function(req, res) {
+    return db.User
+      .findById({ _id: req.params.id })
+      .populate("workday")
+      .then((docEvent) => {
+      console.log("\n>> Grabbing all events:\n", docEvent);
+        return db.User.find(
+          { workday: docEvent }, 
+        );
+    })
   },
   findByIdAndInsertWorkday: function(req, res) {
     return db.Workday
