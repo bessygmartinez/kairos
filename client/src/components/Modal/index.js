@@ -4,10 +4,9 @@ import { connect } from "react-redux";
 
 class Modal extends React.Component {
 
-  // componentDidMount() {
-  //   this.setState({
-  //     user: this.props.auth.user
-  //   })
+  componentDidMount() {
+    this.setState({ switch: this.props.switch})
+    }
 
   //   if (this.props.event.availability === false){
   //   this.setState({switch: this.props.event.availability})
@@ -17,19 +16,25 @@ class Modal extends React.Component {
 
   // UNSAFE_componentWillReceiveProps(nextProps) {
   //   if (nextProps.event.availability === true){
-  //     this.setState({ switch: nextProps.event.availability })
+  //     this.setState({ switch: nextProps.switch })
   //   }
   // }
 
   render() {
-      var buttons = document.querySelectorAll(".toggle-button");
-      var modal = document.querySelector("#modal1");
+      let button = document.getElementById("modal-button");
+      let modal = document.querySelector("#modal1");
 
-      [].forEach.call(buttons, function(button) {
+      if(button){
         button.addEventListener("click", function() {
-          modal.classList.toggle("off");
-        });
-      });
+          modal.classList.add("off")
+        })
+      };
+
+      // [].forEach.call(buttons, function(button) {
+      //   button.addEventListener("click", function() {
+      //     modal.classList.toggle("off");
+      //   });
+      // });
 
     return (
       <div className="modal-container">
@@ -53,7 +58,7 @@ class Modal extends React.Component {
             </form>
           </div>
           <div className="actions">
-            <button
+            <button id="modal-button"
               className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white toggle-button ml-3 mb-3"
               onClick={this.props.onSubmit}
             >
