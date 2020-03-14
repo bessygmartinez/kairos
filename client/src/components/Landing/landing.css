@@ -1,0 +1,11 @@
+.teal-btn {
+    background-color: #009688;
+}
+
+.teal-btn:hover {
+    background-color: #004d40;
+}
+
+.teal-btn:focus {
+    background-color: #80cbc4;
+}

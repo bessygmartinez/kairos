@@ -1,0 +1,26 @@
+.Toastify__toast--success {
+    background: #009688;
+}
+
+.Toastify__toast--warning {
+    background: #f44336;
+}
+
+.teal-btn:focus {
+    background-color: #004d40;
+}
+
+#landing-photo {
+        animation: fadeInAnimation ease 1s;
+        animation-iteration-count: 1; 
+        animation-fill-mode: forwards; 
+ } 
+
+    @keyframes fadeInAnimation { 
+        0% { 
+            opacity: 0; 
+        } 
+        100% { 
+            opacity: 1; 
+         } 
+    } 
