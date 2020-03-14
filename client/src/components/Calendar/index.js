@@ -15,21 +15,18 @@ const localizer = momentLocalizer(moment);
 class MyCalendar extends Component {
   componentDidMount() {
     workdaysAPI
-      .getAllThisEmployeeWorkdays(this.props.auth.user.id)
-      .then(dbModel => {
-        console.log(dbModel.data.workday)
-        this.setState({
-          events: dbModel.data.workday
-        })
-      }
-      );
+    .getAllThisEmployeeWorkdays(this.props.auth.user.id)
+    .then(dbModel => {
+      this.setState({
+        events: dbModel.data.workday
+      });
+    });
   }
 
   constructor() {
     super();
 
     const events = [];
-    
 
     const handleSelect = event => {
       let startView = moment(event.start).format("dddd, MMMM DD, YYYY");
@@ -131,6 +128,11 @@ class MyCalendar extends Component {
             defaultDate={moment().toDate()}
             onSelectEvent={event => this.state.handleSelect(event)}
             onSelectSlot={slotInfo => this.state.handleSelect(slotInfo)}
+            eventPropGetter={event => ({
+              style: {
+                backgroundColor: event.availability === false ? "#a13a1a" : "#009688"
+              }
+            })}
             id="TheCalendar"
           />
         </div>
