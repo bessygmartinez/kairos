@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -32,7 +33,8 @@ app.use("/api/workdays", workdays);
 app.use("/api/users", users);
 
 //DB Config
-const db = require("./config/keys").mongoURI;
+let keys = require("./config/keys");
+const db = keys.mongoURI;
 
 // Connect to the Mongo DB
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true })
