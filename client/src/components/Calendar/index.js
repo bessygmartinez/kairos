@@ -16,10 +16,12 @@ class MyCalendar extends Component {
   componentDidMount() {
     workdaysAPI
       .getAllThisEmployeeWorkdays(this.props.auth.user.id)
-      .then(dbModel => 
+      .then(dbModel => {
+        console.log(dbModel.data.workday)
         this.setState({
-          events: dbModel
+          events: dbModel.data.workday
         })
+      }
       );
   }
 
