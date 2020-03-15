@@ -15,51 +15,25 @@ const localizer = momentLocalizer(moment);
 class MyCalendar extends Component {
   componentDidMount() {
     workdaysAPI
-    .getAllThisEmployeeWorkdays(this.props.auth.user.id)
-    .then(dbModel => {
-      this.setState({
-        events: dbModel.data.workday
+      .getAllThisEmployeeWorkdays(this.props.auth.user.id)
+      .then(dbModel => {
+        this.setState({
+          events: dbModel.data.workday
+        });
       });
-    });
   }
 
   constructor() {
     super();
 
     const events = [];
-
-    const handleSelect = event => {
-      let startView = moment(event.start).format("dddd, MMMM DD, YYYY");
-      let startDate = moment(event.start).format("YYYY/MM/DD");
-
-      let endView = moment(event.end).format("dddd, MMMM DD, YYYY");
-      let endDate = moment(event.end).format("YYYY/MM/DD");
-
-      let modalAvail;
-
-      if (event.slots) {
-        modalAvail = true;
-        this.showModal(event, startDate, endDate, startView, endView, modalAvail);
-      }
-
-      if (event.allDay) {
-        if (event.availability === false) {
-          modalAvail = false;
-          this.showModal(event, startDate, endDate, startView, endView, modalAvail);
-        } else {
-          modalAvail = true;
-          this.showModal(event, startDate, endDate, startView, endView, modalAvail);
-        }
-      }
-    };
-
+    
     this.state = {
       events,
       event: null,
-      handleSelect,
       show: false
     };
-  }
+  };
 
   showModal = (event, startDate, endDate, startView, endView, modalAvail) => {
     this.setState({
@@ -71,6 +45,31 @@ class MyCalendar extends Component {
       endDate: endDate,
       switch: modalAvail
     });
+  };
+
+  handleSelect = event => {
+    let startView = moment(event.start).format("dddd, MMMM DD, YYYY");
+    let startDate = moment(event.start).format("YYYY/MM/DD");
+
+    let endView = moment(event.end).format("dddd, MMMM DD, YYYY");
+    let endDate = moment(event.end).format("YYYY/MM/DD");
+
+    let modalAvail;
+
+    if (event.slots) {
+      modalAvail = true;
+      this.showModal(event, startDate, endDate, startView, endView, modalAvail);
+    }
+
+    if (event.allDay) {
+      if (event.availability === false) {
+        modalAvail = false;
+        this.showModal(event, startDate, endDate, startView, endView, modalAvail);
+      } else {
+        modalAvail = true;
+        this.showModal(event, startDate, endDate, startView, endView, modalAvail);
+      }
+    }
   };
 
   onClose = e => {
@@ -90,20 +89,31 @@ class MyCalendar extends Component {
       allDay: true
     };
 
-    workdaysAPI
+    let eventExists = this.state.events.indexOf(this.state.event)
+
+    if (eventExists === -1) {
+      workdaysAPI
       .saveWorkday(this.props.auth.user.id, workdaysUpdate)
-      .then(toast.success("Schedule has been updated"))
+      .then(toast.success("Schedule has been saved"))
       .then(
         this.setState({
           events: [...this.state.events, workdaysUpdate]
         })
       );
+    } else {
+      workdaysAPI
+      .updateWorkday(this.state.event.id, workdaysUpdate)
+      .then(toast.success("Schedule has been updated"))
+      .then(
+        this.setState({ event: workdaysUpdate })
+      );
+    }
   };
 
   render() {
     return (
       <div>
-        <div style={{ height: "500px", width: "1000px" }}>
+        <div style={{ height: "430px", width: "1000px" }}>
           {this.state.show ? (
             <Modal
               onClose={this.showModal}
@@ -126,8 +136,8 @@ class MyCalendar extends Component {
             events={this.state.events}
             views={["week", "month"]}
             defaultDate={moment().toDate()}
-            onSelectEvent={event => this.state.handleSelect(event)}
-            onSelectSlot={slotInfo => this.state.handleSelect(slotInfo)}
+            onSelectEvent={event => this.handleSelect(event)}
+            onSelectSlot={slotInfo => this.handleSelect(slotInfo)}
             eventPropGetter={event => ({
               style: {
                 backgroundColor: event.availability === false ? "#a13a1a" : "#009688"
