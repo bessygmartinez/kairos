@@ -14,9 +14,7 @@ router
 
 router
   .route("/:id")
-  // .get(workdaysController.findById)
-  // .get(workdaysController.findById)
   .post(workdaysController.findByIdAndInsertWorkday)
-  // .put(workdaysController.update);
+  .put(workdaysController.findByIdAndUpdate);
 
 module.exports = router;
