@@ -14,13 +14,23 @@ const localizer = momentLocalizer(moment);
 
 class MyCalendar extends Component {
   componentDidMount() {
-    workdaysAPI
+    if (this.props.auth.user.role === "manager") {
+      workdaysAPI
+        .getAllEmployeesWorkdays()
+        .then(dbModel => {
+          this.setState({
+            events: dbModel.data
+          });
+        });
+    } else {
+      workdaysAPI
       .getAllThisEmployeeWorkdays(this.props.auth.user.id)
       .then(dbModel => {
         this.setState({
           events: dbModel.data.workday
         });
       });
+    }
   }
 
   constructor() {
@@ -112,7 +122,7 @@ class MyCalendar extends Component {
   render() {
     return (
       <div>
-        <div style={{ height: "430px", width: "1000px" }}>
+        <div style={{ height: "500px", width: "1000px" }}>
           {this.state.show ? (
             <Modal
               onClose={this.showModal}

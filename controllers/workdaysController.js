@@ -4,11 +4,13 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Workday
-      .find(req.query)
-      .populate("User")
+      .find()
+      .populate("user")
       .sort({ "name": 1 })
-      .then(dbModel => res.json(dbModel))
-      console.log("\n>> Grabbing all events:\n", dbModel)
+      .then(dbModel => {
+        res.json(dbModel)
+        console.log("\n>> Grabbing all events:\n", dbModel)
+      })
       .catch(err=>res.status(422).json(err));
   },
   findAllById: function(req, res) {

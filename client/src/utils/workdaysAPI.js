@@ -1,6 +1,10 @@
 import axios from "axios";
 
 export default {
+  // GETS ALL workdays for all employee's for manager
+  getAllEmployeesWorkdays: function() {
+    return axios.get("/api/workdays/");
+  },
   // GETS ALL workdays w/ user id
   getAllThisEmployeeWorkdays: function(id) {
     return axios.get("/api/workdays/allworkdays/" + id);
