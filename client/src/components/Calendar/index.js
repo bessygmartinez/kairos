@@ -102,11 +102,10 @@ class MyCalendar extends Component {
       );
     } else {
       workdaysAPI
-      .updateWorkday(this.state.event.id, workdaysUpdate)
+      .updateWorkday(this.state.event._id, workdaysUpdate)
       .then(toast.success("Schedule has been updated"))
-      .then(
-        this.setState({ event: workdaysUpdate })
-      );
+      // let newColor = this.state.event.availability === false ? "#a13a1a" : "#009688"
+      // document.getElementById("#TheCalendar").event.style.backgroundColor = newColor
     }
   };
 

@@ -40,10 +40,11 @@ module.exports = {
   },
   findByIdAndUpdate: function(req, res) {
     db.Workday
-      .findOneAndUpdate(req.params.id, req.body)
+      .findByIdAndUpdate(req.params.id, req.body)
       .then((docEvent) => {
         res.json(docEvent)
         console.log("\n>> Updated event:\n", docEvent)
-    }).catch(err => res.status(422).json(err));
+      })
+      .catch(err => res.status(422).json(err));
   }
 };
