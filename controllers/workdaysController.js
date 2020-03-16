@@ -2,11 +2,23 @@ const db = require("../models");
 
 // Defining methods for the workdaysController
 module.exports = {
+  findAll: function(req, res) {
+    db.Workday
+      .find()
+      .populate("user")
+      .sort({ "name": 1 })
+      .then(dbModel => {
+        res.json(dbModel)
+        console.log("\n>> Grabbing all events:\n", dbModel)
+      })
+      .catch(err=>res.status(422).json(err));
+  },
   findAllById: function(req, res) {
-    return db.User
-      .findById({ _id: req.params.id })
+    db.User
+      .findById(req.params.id)
       .populate("workday")
-      .then((docEvent) => {
+      .then(docEvent => {
+        res.json(docEvent)
       console.log("\n>> Grabbing all events:\n", docEvent);
         return db.User.find(
           { workday: docEvent }, 
@@ -14,31 +26,27 @@ module.exports = {
     })
   },
   findByIdAndInsertWorkday: function(req, res) {
-    return db.Workday
-      .create(req.body).then((docEvent) => {
-        console.log("\n>> Created event:\n", docEvent);
-        return db.User.findByIdAndUpdate(
+    db.Workday
+      .create(req.body)
+      .then((docEvent) => {
+        res.json(docEvent)
+        console.log("\n>> Created event:\n", docEvent)
+        db.User.findByIdAndUpdate(
           req.params.id, 
           { $push: { workday: docEvent._id }}, 
           { new: true, useFindAndModify: false}
-        );
+        )
+      .catch(err=>res.status(422).json(err));
     })
+    .catch(err=>res.status(422).json(err));
   },
-  update: function(req, res) {
-    // let token = JSON.parse(localStorage.getItem("jwtToken"));
-    // const user = token.data.id;
-    db.User
-      .findOneAndUpdate(req.body)
-      .populate('workday')
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  remove: function(req, res) {
-    db.User
-      .findById({ _id: req.params.id })
-      .populate('workday')
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+  findByIdAndUpdate: function(req, res) {
+    db.Workday
+      .findByIdAndUpdate(req.params.id, req.body)
+      .then((docEvent) => {
+        res.json(docEvent)
+        console.log("\n>> Updated event:\n", docEvent)
+      })
       .catch(err => res.status(422).json(err));
   }
 };
