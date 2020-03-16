@@ -114,15 +114,6 @@ class MyCalendar extends Component {
         })
         toast.success("Schedule has been saved")
       })
-        
-        // this.setState({
-        //   events: [...this.state.events, dbModel.data]
-        // })
-
-      // .then(
-      //   this.setState({
-      //     events: [...this.state.events, workdaysUpdate]
-      //   }))
     } else {
       workdaysAPI
       .updateWorkday(this.state.event._id, workdaysUpdate)
