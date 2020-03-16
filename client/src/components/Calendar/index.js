@@ -108,14 +108,25 @@ class MyCalendar extends Component {
       .then(
         this.setState({
           events: [...this.state.events, workdaysUpdate]
-        })
-      );
+        }))
+        .then(workdaysAPI
+          .getAllThisEmployeeWorkdays(this.props.auth.user.id)
+          .then(dbModel => {
+            this.setState({
+              events: dbModel.data.workday
+            });
+          }))
     } else {
       workdaysAPI
       .updateWorkday(this.state.event._id, workdaysUpdate)
       .then(toast.success("Schedule has been updated"))
-      // let newColor = this.state.event.availability === false ? "#a13a1a" : "#009688"
-      // document.getElementById("#TheCalendar").event.style.backgroundColor = newColor
+      .then(workdaysAPI
+        .getAllThisEmployeeWorkdays(this.props.auth.user.id)
+        .then(dbModel => {
+          this.setState({
+            events: dbModel.data.workday
+          });
+        }))
     }
   };
 
