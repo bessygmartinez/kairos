@@ -90,7 +90,9 @@ class MyCalendar extends Component {
     this.setState({ switch: !this.state.switch });
   };
 
-  onSubmit = () => {
+  onSubmit = (e) => {
+    e.preventDefault();
+
     const workdaysUpdate = {
       title: this.props.auth.user.name,
       availability: this.state.switch,
@@ -104,18 +106,23 @@ class MyCalendar extends Component {
     if (eventExists === -1) {
       workdaysAPI
       .saveWorkday(this.props.auth.user.id, workdaysUpdate)
-      .then(toast.success("Schedule has been saved"))
-      .then(
-        this.setState({
-          events: [...this.state.events, workdaysUpdate]
-        }))
-        .then(workdaysAPI
-          .getAllThisEmployeeWorkdays(this.props.auth.user.id)
-          .then(dbModel => {
-            this.setState({
-              events: dbModel.data.workday
-            });
-          }))
+      .then(response => {
+        this.setState(prevState => {
+          return {
+            events: [...prevState.events, response.data]
+          }
+        })
+        toast.success("Schedule has been saved")
+      })
+        
+        // this.setState({
+        //   events: [...this.state.events, dbModel.data]
+        // })
+
+      // .then(
+      //   this.setState({
+      //     events: [...this.state.events, workdaysUpdate]
+      //   }))
     } else {
       workdaysAPI
       .updateWorkday(this.state.event._id, workdaysUpdate)
