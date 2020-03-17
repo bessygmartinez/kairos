@@ -19,8 +19,8 @@ class Landing extends Component {
   
 
   getNewQuote() {
-    axios.get("https://api.kanye.rest")
-    .then((response)=>this.setState({quote:response.data}
+    axios.get("https://api.quotable.io/random")
+    .then((response)=>this.setState({quote:response.data.content}
       ))
   };
 
@@ -51,7 +51,7 @@ class Landing extends Component {
         <div style={{ height: "75vh" }} className="container mt-5">
           <div className="row">
             <div className="col-sm-12 text-center">
-              {this.state.quote !==null && <p>{this.state.quote.quote}</p>}
+              {this.state.quote !==null && <p>{this.state.quote}</p>}
        
               <img src={this.state.photoURL} alt="Random" style={{maxWidth: "500px"}} className="img-fluid border
               border-secondary" id="landing-photo"></img><br /><br />
