@@ -40,8 +40,7 @@ class userDetail extends Component {
     }});
   };
 
-  onSubmit = event => {
-    event.preventDefault();
+  onSubmit = () => {
 
     const userUpdate = {
       name: this.state.user.name,
@@ -120,6 +119,7 @@ class userDetail extends Component {
                 <div className="card border-secondary mb-3">
                   <div className="card-title input-field">
                     <div className="text-muted text-center mt-3 mb-3">Edit information below and click Submit when finished.</div>
+                    
                     <h1><input 
                     onChange={this.onChange}
                     defaultValue={this.state.user.name}
@@ -196,18 +196,18 @@ class userDetail extends Component {
                       borderRadius: "3px",
                       letterSpacing: "1.5px",
                       marginTop: "1rem"
-                    }}
+                      }}
                     type="submit"
-                    onSubmit={() => this.onSubmit()}
-                    className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white"
-                  >
+                    onClick={() => this.onSubmit()}
+                    className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white">
                     Submit{""}
                           <i className="material-icons" style={{ fontSize: "130%" }}>
                             send
                           </i>
                         </button>
                       </div>
-                      <div className="col">
+
+                      {/* <div className="col">
                         <button
                           className="btn btn-sm bg-danger text-white waves-effect waves-light hoverable"
                           style={{
@@ -223,7 +223,7 @@ class userDetail extends Component {
                             delete_forever
                           </i>
                         </button>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
