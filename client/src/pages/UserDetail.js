@@ -9,11 +9,13 @@ import { logoutUser } from "../Actions/authActions";
 import ManagerDashboard from "../components/Dashboard/ManagerDashboard";
 import EmployeeDashboard from "../components/Dashboard/EmployeeDashboard";
 import classnames from "classnames";
+import Confirm from "./Confirm";
 
 class userDetail extends Component {
   state = {
     user: {},
     isEdit: false,
+    show: false
   };
 
   //When the component mounts, grab user with id of this.props.match.params.id
@@ -38,8 +40,7 @@ class userDetail extends Component {
     }});
   };
 
-  onSubmit = event => {
-    event.preventDefault();
+  onSubmit = () => {
 
     const userUpdate = {
       name: this.state.user.name,
@@ -53,9 +54,19 @@ class userDetail extends Component {
     .then(this.props.history.push("/users/" + this.state.user._id))
   };
 
+  onClose = e => {
+    this.onClose() && this.onClose(e);
+  };
+
+  showModal = () => {
+    this.setState({
+      show: !this.state.show
+    });
+  };
+
   render() {
 
-  const onClick = () => {
+  const onEdit = () => {
       this.setState({ isEdit: true });
     };
 
@@ -108,6 +119,7 @@ class userDetail extends Component {
                 <div className="card border-secondary mb-3">
                   <div className="card-title input-field">
                     <div className="text-muted text-center mt-3 mb-3">Edit information below and click Submit when finished.</div>
+                    
                     <h1><input 
                     onChange={this.onChange}
                     defaultValue={this.state.user.name}
@@ -179,25 +191,24 @@ class userDetail extends Component {
                     <div className="row text-center">
                       <div className="col">
                       <button
-                    style={{
+                      style={{
                       width: "100px",
                       borderRadius: "3px",
                       letterSpacing: "1.5px",
                       marginTop: "1rem"
-                    }}
+                      }}
                     type="submit"
-                    onSubmit={() => this.onSubmit()}
-                    className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white"
-                  >
+                    onClick={() => this.onSubmit()}
+                    className="btn btn-raised btn-large waves-effect waves-light hoverable teal-btn text-white">
                     Submit{""}
                           <i className="material-icons" style={{ fontSize: "130%" }}>
                             send
                           </i>
                         </button>
                       </div>
-                      <div className="col">
-                        <Link
-                          to="/"
+
+                      {/* <div className="col">
+                        <button
                           className="btn btn-sm bg-danger text-white waves-effect waves-light hoverable"
                           style={{
                             width: "100px",
@@ -205,14 +216,14 @@ class userDetail extends Component {
                             letterSpacing: "1.5px",
                             marginTop: "1rem"
                           }}
-                          onClick={() => this.deleteUser(this.state.user._id)}
+                            onClick={() => this.showModal()}
                         >
                           Delete{" "}
                           <i className="material-icons" style={{ fontSize: "130%" }}>
                             delete_forever
                           </i>
-                        </Link>
-                      </div>
+                        </button>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -221,7 +232,7 @@ class userDetail extends Component {
             </div>
           </div>
         )
-      }
+      } else {
 
       return (
         <div style={{ marginTop: "2rem", height: "75vh" }} className="container">
@@ -262,7 +273,7 @@ class userDetail extends Component {
                       <button
                         id="edit-button"
                         className="btn btn-sm bg-secondary text-white"
-                        onClick={() => onClick()}
+                        onClick={() => onEdit()}
                         style={{
                           width: "100px",
                           borderRadius: "3px",
@@ -277,8 +288,7 @@ class userDetail extends Component {
                       </button>
                     </div>
                     <div className="col">
-                      <Link
-                        to="/"
+                      <button
                         className="btn btn-sm bg-danger text-white waves-effect waves-light hoverable"
                         style={{
                           width: "100px",
@@ -286,21 +296,30 @@ class userDetail extends Component {
                           letterSpacing: "1.5px",
                           marginTop: "1rem"
                         }}
-                        onClick={() => this.deleteUser(this.state.user._id)}
+                        onClick={() => this.showModal()}
                       >
                         Delete{" "}
                         <i className="material-icons" style={{ fontSize: "130%" }}>
                           delete_forever
                         </i>
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          {this.state.show ? (
+            <Confirm
+              onClose={this.showModal}
+              show={this.state.show}
+              user={this.state.user}
+              deleteUser={this.deleteUser}
+            />
+          ) : null}
         </div>
       )
+    }
     }
   }
 }
