@@ -51,8 +51,7 @@ class Landing extends Component {
         <div style={{ height: "75vh" }} className="container mt-5">
           <div className="row">
             <div className="col-sm-12 text-center">
-              {this.state.quote !==null && <p>{this.state.quote}</p>}
-       
+              {this.state.quote !==null && <p className="lead">"{this.state.quote}"</p>}
               <img src={this.state.photoURL} alt="Random" style={{maxWidth: "500px"}} className="img-fluid border
               border-secondary" id="landing-photo"></img><br /><br />
               <h1>
