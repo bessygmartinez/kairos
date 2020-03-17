@@ -18,7 +18,7 @@ class Nav extends Component {
             src="/img/kairos_logo.png"
             alt="kairos logo"
             className="d-inline-block"
-            width="250vw"
+            width="220vw"
           ></img>
         </a>
         <button
