@@ -131,7 +131,7 @@ class MyCalendar extends Component {
   render() {
     return (
       <div>
-        <div style={{ height: "500px", width: "1000px" }}>
+        <div style={{ height: "500px", width: "100%" }}>
           {this.state.show ? (
             <Modal
               onClose={this.showModal}
