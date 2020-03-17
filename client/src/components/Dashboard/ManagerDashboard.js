@@ -28,24 +28,43 @@ class ManagerDashboard extends Component {
                 }
 
     return (
-        <div style={{ marginTop: "2rem", height: "75vh" }} className="container valign-wrapper">
+        <div style={{ marginTop: "1.8rem", height: "100%" }} className="container valign-wrapper">
             <div className="row">
-            <div className="col-sm-12 text-right">
-                <Moment interval={1000} format="LLLL" />
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-sm-12 center-align">
+            <div className="col-sm-6">
                     <h4>
-                        <b>{greeting}</b>, {user.name.split(" ")[0]}
-                        <p className="flow-text text-secondary">
+                        <b>{greeting}</b>, {user.name.split(" ")[0]} <br></br>
+                        <p className="small text-secondary">
                             You are logged into the {" "}
                             <span style={{ fontFamily: "monospace"}}>MANAGER</span> dashboard.
                         </p>
                     </h4>
-                    <MyCalendar />
+                </div>
+
+            <div className="col-sm-6 text-right">
+                <Moment interval={1000} format="LLLL" />
+                <br></br>
+                <button
+                      style={{
+                      width: "40%",
+                      borderRadius: "3px",
+                      letterSpacing: "1.5px",
+                      marginTop: "1rem"
+                      }}
+                    type="submit"
+                    className="btn btn-flat btn-large waves-effect waves-light hoverable teal-btn text-white mt-2">
+                    Submit This Schedule{" "}
+                          <i className="material-icons" style={{ fontSize: "130%" }}>
+                            schedule
+                          </i>
+                        </button>
                 </div>
             </div>
+
+                    <div className="row mt-2">
+                        <div className="col-sm-12 center-align">
+                    <MyCalendar /> 
+                    </div>
+                </div>
         </div>
     );
   }
