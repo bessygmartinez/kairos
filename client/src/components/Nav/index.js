@@ -48,7 +48,7 @@ class Nav extends Component {
               </Link>
             </li>
             <li className="nav-item mr-5">
-              <Link to="/" className="nav-link btn btn-sm waves-effect waves-light hoverable"
+              <Link to="/finalschedule" className="nav-link btn btn-sm waves-effect waves-light hoverable"
                   style={{
                     width: "100px",
                     borderRadius: "3px",
@@ -56,7 +56,7 @@ class Nav extends Component {
                     marginTop: "1rem"
                   }}
                 >
-                  Calendar
+                  Approved
               </Link>
             </li>
             <li className="nav-item">

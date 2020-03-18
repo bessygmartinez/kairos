@@ -92,13 +92,25 @@ class MyCalendar extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    let workdaysUpdate = {};
 
-    const workdaysUpdate = {
-      title: this.props.auth.user.name,
-      availability: this.state.switch,
-      start: this.state.startDate,
-      end: this.state.endDate,
-      allDay: true
+
+    if (this.props.auth.user.role === "manager") {
+      workdaysUpdate = {
+        title: this.state.event.title,
+        availability: this.state.switch,
+        start: this.state.startDate,
+        end: this.state.endDate,
+        allDay: true
+      };
+    } else {
+      workdaysUpdate = {
+        title: this.props.auth.user.name,
+        availability: this.state.switch,
+        start: this.state.startDate,
+        end: this.state.endDate,
+        allDay: true
+      };
     };
 
     let eventExists = this.state.events.indexOf(this.state.event)
@@ -118,12 +130,13 @@ class MyCalendar extends Component {
       workdaysAPI
       .updateWorkday(this.state.event._id, workdaysUpdate)
       .then(toast.success("Schedule has been updated"))
-      .then(workdaysAPI
-        .getAllThisEmployeeWorkdays(this.props.auth.user.id)
-        .then(dbModel => {
-          this.setState({
-            events: dbModel.data.workday
-          });
+      .then(
+        workdaysAPI
+          .getAllEmployeesWorkdays()
+          .then(dbModel => {
+            this.setState({
+              events: dbModel.data
+            });
         }))
     }
   };
