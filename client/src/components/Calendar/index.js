@@ -59,10 +59,10 @@ class MyCalendar extends Component {
 
   handleSelect = event => {
     let startView = moment(event.start).format("dddd, MMMM DD, YYYY");
-    let startDate = moment(event.start).format("YYYY-MM-DD");
+    let startDate = moment(event.start).format("dddd, MMMM DD, YYYY");
 
     let endView = moment(event.end).format("dddd, MMMM DD, YYYY");
-    let endDate = moment(event.end).format("YYYY-MM-DD");
+    let endDate = moment(event.end).format("dddd, MMMM DD, YYYY");
 
     let modalAvail;
 
