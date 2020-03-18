@@ -130,13 +130,12 @@ class MyCalendar extends Component {
       workdaysAPI
       .updateWorkday(this.state.event._id, workdaysUpdate)
       .then(toast.success("Schedule has been updated"))
-      .then(
-        workdaysAPI
-          .getAllEmployeesWorkdays()
-          .then(dbModel => {
-            this.setState({
-              events: dbModel.data
-            });
+      .then(workdaysAPI
+        .getAllThisEmployeeWorkdays(this.props.auth.user.id)
+        .then(dbModel => {
+          this.setState({
+            events: dbModel.data.workday
+          });
         }))
     }
   };
