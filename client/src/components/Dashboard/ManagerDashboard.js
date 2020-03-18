@@ -39,7 +39,7 @@ class ManagerDashboard extends Component {
         //                 events: [...prevState.events, response.data]
         //             }
         //         })
-        //     toast.success("Schedule has been saved")
+            toast.success("Schedule has been saved")
         //     })
         // } 
       };
