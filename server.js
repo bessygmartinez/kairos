@@ -1,6 +1,5 @@
 const dotenv = require("dotenv");
 dotenv.config();
-const path = require('path');
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -19,14 +18,6 @@ app.use(bodyParser.json());
 
 // app.use(express.urlencoded({ extended: true }));
 // app.use(express.json());
-
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'client/public/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
  
 //Passport middleware
 app.use(passport.initialize());
