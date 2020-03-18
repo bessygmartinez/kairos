@@ -3,13 +3,46 @@ import PropTypes from "prop-types";
 import Moment from "react-moment";
 import { connect } from "react-redux";
 import { logoutUser } from "../../Actions/authActions";
+import schedulesAPI from "../../utils/schedulesAPI";
 import MyCalendar from "../Calendar";
+import { toast } from "react-toastify";
 
 class ManagerDashboard extends Component {
+
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
     };
+
+    onLogoutClick = e => {
+        e.preventDefault();
+        this.props.logoutUser();
+    };
+
+    onSubmit = e => {
+        e.preventDefault();
+    
+        // const schedulesUpdate = {
+        //     events: this.state.events
+        // };
+
+        console.log("!")
+    
+        // let eventExists = this.state.events.indexOf(this.state.event)
+    
+        // if (eventExists === -1) {
+        //   schedulesAPI
+        //     .saveSchedules(schedulesUpdate)
+        //     .then(response => {
+        //         this.setState(prevState => {
+        //             return {
+        //                 events: [...prevState.events, response.data]
+        //             }
+        //         })
+        //     toast.success("Schedule has been saved")
+        //     })
+        // } 
+      };
 
     render() {
         const { user } = this.props.auth;
@@ -45,12 +78,13 @@ class ManagerDashboard extends Component {
                 <br></br>
                 <button
                       style={{
-                      width: "40%",
+                      width: "border-box",
                       borderRadius: "3px",
                       letterSpacing: "1.5px",
                       marginTop: "1rem"
                       }}
                     type="submit"
+                    onClick={this.onSubmit}
                     className="btn btn-flat btn-large waves-effect waves-light hoverable teal-btn text-white mt-2">
                     Submit This Schedule{" "}
                           <i className="material-icons" style={{ fontSize: "130%" }}>

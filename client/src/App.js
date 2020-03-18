@@ -10,6 +10,7 @@ import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import PrivateRoute from "./components/Private-Route/PrivateRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Schedule from "./components/Schedule/index";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -68,6 +69,7 @@ class App extends Component {
               <PrivateRoute exact path="/register" component={Register} />
               <PrivateRoute exact path="/viewaccounts" component={ViewAccounts} />
               <PrivateRoute exact path="/users/:id" component={userDetail} />
+              <Route exact path="/finalschedule" component={Schedule} />
             </Switch>
         </Router>
       </Provider>
