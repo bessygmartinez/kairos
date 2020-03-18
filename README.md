@@ -1,12 +1,12 @@
-# :date: kairos
+![alt text](https://raw.githubusercontent.com/bessygmartinez/kairos/master/client/public/img/kairos_logo.png "kairos logo")
 #### Created: March 2020
 ---
 
-![alt text](https://raw.githubusercontent.com/bessygmartinez/kairos/master/client/public/img/kairos_logo.png "kairos logo")
-
 ## ABOUT KAIROS
 [![Build Status](https://travis-ci.com/bessygmartinez/kairos.svg?branch=master)](https://travis-ci.com/bessygmartinez/kairos)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![dependencies Status](https://david-dm.org/expressjs/express/status.svg)](https://david-dm.org/expressjs/express)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Maintainability](https://api.codeclimate.com/v1/badges/741d058801885b88ef82/maintainability)](https://codeclimate.com/github/bessygmartinez/kairos/maintainability)
 
 kairos is a MERN stack web application designed to facilitate communication between employees and managers in order to ease the pain of schedule creation and management. The web app is intended to allow employees to communicate their availability to management on a monthly basis with a few easy steps. Powered by React.js and designed using [Material Design for Bootstrap](https://fezvrasta.github.io/bootstrap-material-design/), Kairos is efficient and user-friendly.
 
@@ -18,20 +18,20 @@ The application will then identify the role of the user (either employee, manage
 * Employee Dashboard
 * Manager Dashboard
 
-## Administrator Dashboard
+## :busts_in_silhouette: Administrator Dashboard
 
 With the appropriate credentials, the administrator has the capability to register new accounts and assign their roles (either employee or manager). The administrator can additionally view all accounts registered and also has the ability to edit details of the account or delete the account completely.
 
-## Employee Dashboard
+## :calendar: Employee Dashboard
 
 The employees are presented with amonthly calendar that is interactive and intuitive. By default, each day is considered as open availability. With a simple click on a desired date, a modal will pop up and the employee can choose to set themselves as unavailable for work. This is made apparent by a toggle switch that can be "turned on" or "off." Once selected, their name will appear on the calendar as either teal (available) or red (unavailable). Once their availability is submitted, the manager will be able to see it in their dashboard.
 
-## Manager Dashboard
+## :date: Manager Dashboard
 With the appropriate credentials, managers are directed to their dashboard, wherein they are presented with a monthly calendar. Managers have exclusive access to view all employees' availability for each day, along with the ability to edit entries. As with the employees, this is achieved by clicking on the switch for available or unavailable. The employee's name will be displayed on the date, along with their availability (either teal for available or red for unavailable).
 
 ---
 
-# TECHNOLOGIES USED
+# :computer: TECHNOLOGIES USED
   * [MongoDB](https://www.mongodb.com/)
   * [React.js](https://reactjs.org/)
   * [Node.js](https://nodejs.org/en/)
@@ -56,7 +56,7 @@ With the appropriate credentials, managers are directed to their dashboard, wher
         * [mLab MongoDB](https://elements.heroku.com/addons/mongolab)
  --- 
  
- # THE KAIROS TEAM
+ # :triangular_flag_on_post: THE KAIROS TEAM
  | <a href="https://github.com/bessygmartinez" target="_blank">**Bessy G. Martinez**</a> | <a href="https://github.com/stephenc93" target="_blank">**Stephen Caceres**</a> | <a href="https://github.com/Paolalarrazabal" target="_blank">**Paola Larrazabal**</a> |
 | :---: |:---:| :---:|
 | [![Bessy G. Martinez](https://avatars2.githubusercontent.com/u/54027046?s=460&u=ca19e69c9d5ff747d3cf3786fc4e2d9852a7f859&v=4?s=200)](https://github.com/bessygmartinez)    | [![Stephen Caceres](https://avatars0.githubusercontent.com/u/54186983?s=460&v=4&s=200)](https://github.com/stephenc93) | [![Paola Larrazabal](https://avatars2.githubusercontent.com/u/54810251?s=460&u=0dc9cc9d9c4031ffa60c59d6e87ee461a3caa9f5&v=4&s=200)](https://github.com/Paolalarrazabal)  |
