@@ -1,4 +1,5 @@
 module.exports = {
   User: require("./User"),
-  Workday: require("./Workday")
+  Workday: require("./Workday"),
+  Schedule: require("./Schedule")
 };

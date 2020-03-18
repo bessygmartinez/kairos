@@ -90,13 +90,27 @@ class MyCalendar extends Component {
     this.setState({ switch: !this.state.switch });
   };
 
-  onSubmit = () => {
-    const workdaysUpdate = {
-      title: this.props.auth.user.name,
-      availability: this.state.switch,
-      start: this.state.startDate,
-      end: this.state.endDate,
-      allDay: true
+  onSubmit = (e) => {
+    e.preventDefault();
+    let workdaysUpdate = {};
+
+
+    if (this.props.auth.user.role === "manager") {
+      workdaysUpdate = {
+        title: this.state.event.title,
+        availability: this.state.switch,
+        start: this.state.startDate,
+        end: this.state.endDate,
+        allDay: true
+      };
+    } else {
+      workdaysUpdate = {
+        title: this.props.auth.user.name,
+        availability: this.state.switch,
+        start: this.state.startDate,
+        end: this.state.endDate,
+        allDay: true
+      };
     };
 
     let eventExists = this.state.events.indexOf(this.state.event)
@@ -104,28 +118,25 @@ class MyCalendar extends Component {
     if (eventExists === -1) {
       workdaysAPI
       .saveWorkday(this.props.auth.user.id, workdaysUpdate)
-      .then(toast.success("Schedule has been saved"))
-      .then(
-        this.setState({
-          events: [...this.state.events, workdaysUpdate]
-        }))
-        .then(workdaysAPI
-          .getAllThisEmployeeWorkdays(this.props.auth.user.id)
-          .then(dbModel => {
-            this.setState({
-              events: dbModel.data.workday
-            });
-          }))
+      .then(response => {
+        this.setState(prevState => {
+          return {
+            events: [...prevState.events, response.data]
+          }
+        })
+        toast.success("Schedule has been saved")
+      })
     } else {
       workdaysAPI
       .updateWorkday(this.state.event._id, workdaysUpdate)
       .then(toast.success("Schedule has been updated"))
-      .then(workdaysAPI
-        .getAllThisEmployeeWorkdays(this.props.auth.user.id)
-        .then(dbModel => {
-          this.setState({
-            events: dbModel.data.workday
-          });
+      .then(
+        workdaysAPI
+          .getAllEmployeesWorkdays()
+          .then(dbModel => {
+            this.setState({
+              events: dbModel.data
+            });
         }))
     }
   };
@@ -133,7 +144,7 @@ class MyCalendar extends Component {
   render() {
     return (
       <div>
-        <div style={{ height: "500px", width: "1000px" }}>
+        <div style={{ height: "500px", width: "100%" }}>
           {this.state.show ? (
             <Modal
               onClose={this.showModal}

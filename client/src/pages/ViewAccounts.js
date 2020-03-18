@@ -20,6 +20,10 @@ class ViewAccounts extends Component {
     this.loadUsers();
   }
 
+  componentDidUpdate() {
+    this.loadUsers();
+  }
+
   loadUsers = () => {
     usersAPI
       .getUsers()
