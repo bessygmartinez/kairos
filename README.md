@@ -1,6 +1,11 @@
+[![Build Status](https://travis-ci.com/bessygmartinez/kairos.svg?branch=dev)](https://travis-ci.com/bessygmartinez/kairos.svg?branch=dev)
 # :date: kairos
 #### Created: March 2020
 ---
+
+[![Build Status](https://travis-ci.com/bessygmartinez/kairos.svg?branch=dev)](https://travis-ci.com/bessygmartinez/kairos.svg?branch=dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ![alt text](https://raw.githubusercontent.com/bessygmartinez/kairos/master/client/public/img/kairos_logo.png "kairos logo")
 
