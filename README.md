@@ -6,6 +6,7 @@
 [![Build Status](https://travis-ci.com/bessygmartinez/kairos.svg?branch=master)](https://travis-ci.com/bessygmartinez/kairos)
 [![dependencies Status](https://david-dm.org/expressjs/express/status.svg)](https://david-dm.org/expressjs/express)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Maintainability](https://api.codeclimate.com/v1/badges/741d058801885b88ef82/maintainability)](https://codeclimate.com/github/bessygmartinez/kairos/maintainability)
 
 kairos is a MERN stack web application designed to facilitate communication between employees and managers in order to ease the pain of schedule creation and management. The web app is intended to allow employees to communicate their availability to management on a monthly basis with a few easy steps. Powered by React.js and designed using [Material Design for Bootstrap](https://fezvrasta.github.io/bootstrap-material-design/), Kairos is efficient and user-friendly.
 
