@@ -47,7 +47,8 @@ class Nav extends Component {
                   Home
               </Link>
             </li>
-            <li className="nav-item mr-5">
+            {this.props.auth.isAuthenticated ? (
+              <li className="nav-item mr-5">
               <Link to="/finalschedule" className="nav-link btn btn-sm waves-effect waves-light hoverable"
                   style={{
                     width: "100px",
@@ -59,7 +60,9 @@ class Nav extends Component {
                   Approved
               </Link>
             </li>
-            <li className="nav-item">
+            ) : null}
+            
+            {this.props.auth.isAuthenticated ? ( <li className="nav-item">
               <Link to="/" className="nav-link btn btn-sm waves-effect waves-light hoverable teal-btn text-white"
                   style={{
                     width: "100px",
@@ -71,7 +74,7 @@ class Nav extends Component {
                 >
                   Logout
               </Link>
-            </li>
+            </li> ) : null}
           </ul>
         </div>
       </nav>
