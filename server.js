@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
-var path = require('path');
+const path = require('path');
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 // app.use(express.json());
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/public/index.html'), function(err) {
+  res.sendFile(path.join(__dirname, 'client/public/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)
     }
