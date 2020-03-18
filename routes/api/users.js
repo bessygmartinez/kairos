@@ -103,7 +103,7 @@ router.post("/login", (req, res) => {
             }
         );
             } else {
-                return res.status(400).json({ passwordincorrect: "Either email or password is incorrect" });
+                return res.status(400).json({ passwordincorrect: "Email and/or password is incorrect" });
             }
         });
     });
