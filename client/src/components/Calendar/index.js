@@ -115,7 +115,7 @@ class MyCalendar extends Component {
 
     let eventExists = this.state.events.indexOf(this.state.event)
 
-    if (eventExists === -1) {
+    if (eventExists === -1 && this.props.auth.user.role === "employee") {
       workdaysAPI
       .saveWorkday(this.props.auth.user.id, workdaysUpdate)
       .then(response => {
@@ -126,7 +126,7 @@ class MyCalendar extends Component {
         })
         toast.success("Schedule has been saved")
       })
-    } else {
+    } if (eventExists > 0 && this.props.auth.user.role === "employee") {
       workdaysAPI
       .updateWorkday(this.state.event._id, workdaysUpdate)
       .then(toast.success("Schedule has been updated"))
@@ -137,6 +137,18 @@ class MyCalendar extends Component {
             events: dbModel.data.workday
           });
         }))
+    } else if (eventExists > 0 && this.props.auth.user.role === "manager") {
+      workdaysAPI
+      .updateWorkday(this.state.event._id, workdaysUpdate)
+      .then(toast.success("Schedule has been updated"))
+      .then(workdaysAPI
+        .getAllEmployeesWorkdays()
+        .then(dbModel => {
+          this.setState({
+            events: dbModel.data
+          })
+          })
+        )
     }
   };
 
