@@ -8,7 +8,9 @@ import MyCalendar from "../Calendar";
 import { toast } from "react-toastify";
 
 class ManagerDashboard extends Component {
-
+    state = {
+        events: []
+    }
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
@@ -17,6 +19,12 @@ class ManagerDashboard extends Component {
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
+    };
+
+    callbackFunction = (calendarData) => {
+        this.setState({
+            events: calendarData
+        })
     };
 
     onSubmit = e => {
@@ -96,7 +104,7 @@ class ManagerDashboard extends Component {
 
                     <div className="row mt-2">
                         <div className="col-sm-12 center-align">
-                    <MyCalendar /> 
+                    <MyCalendar parentCallback={this.callbackFunction}/> 
                     </div>
                 </div>
         </div>
