@@ -1,8 +1,6 @@
-# :date: kairos
+![alt text](https://raw.githubusercontent.com/bessygmartinez/kairos/master/client/public/img/kairos_logo.png "kairos logo")
 #### Created: March 2020
 ---
-
-![alt text](https://raw.githubusercontent.com/bessygmartinez/kairos/master/client/public/img/kairos_logo.png "kairos logo")
 
 ## ABOUT KAIROS
 [![Build Status](https://travis-ci.com/bessygmartinez/kairos.svg?branch=master)](https://travis-ci.com/bessygmartinez/kairos)
