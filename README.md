@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.com/bessygmartinez/kairos.svg?branch=dev)](https://travis-ci.com/bessygmartinez/kairos.svg?branch=dev)
 # :date: kairos
 #### Created: March 2020
 ---
