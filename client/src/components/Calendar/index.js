@@ -22,6 +22,7 @@ class MyCalendar extends Component {
             events: dbModel.data
           });
         });
+        // this.sendDataToManagerDash(this.state.events);
     } else {
       workdaysAPI
       .getAllThisEmployeeWorkdays(this.props.auth.user.id)
@@ -90,6 +91,10 @@ class MyCalendar extends Component {
     this.setState({ switch: !this.state.switch });
   };
 
+  sendDataToManagerDash = (calendarData) => {
+    this.props.parentCallback(this.state.events);
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
     let workdaysUpdate = {};
@@ -139,6 +144,7 @@ class MyCalendar extends Component {
             });
         }))
     }
+    // this.sendDataToManagerDash();
   };
 
   render() {
