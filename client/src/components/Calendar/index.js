@@ -22,7 +22,7 @@ class MyCalendar extends Component {
             events: dbModel.data
           });
         });
-        this.sendDataToManagerDash(this.state.events);
+        // this.sendDataToManagerDash(this.state.events);
     } else {
       workdaysAPI
       .getAllThisEmployeeWorkdays(this.props.auth.user.id)
@@ -144,7 +144,7 @@ class MyCalendar extends Component {
             });
         }))
     }
-    this.sendDataToManagerDash();
+    // this.sendDataToManagerDash();
   };
 
   render() {
