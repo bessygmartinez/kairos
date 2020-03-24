@@ -33,6 +33,14 @@ if (process.env.NODE_ENV === "production") {
 app.use("/api/workdays", workdays);
 app.use("/api/users", users);
 
+app.get("/*", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.js"), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 //DB Config
 const db = process.env.MONGODB_URI;
 
