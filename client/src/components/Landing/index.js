@@ -25,7 +25,7 @@ class Landing extends Component {
   };
 
   displayPhoto() {
-    axios.get("https://pixabay.com/api/?key=15543336-7c6d0c624d0ac9a8577d08ab8&q=working&image_type=photo&pretty=true")
+    axios.get("https://pixabay.com/api/?key=15543336-7c6d0c624d0ac9a8577d08ab8&q=office&image_type=photo&pretty=true")
     .then((response)=> {
       let hit = response.data.hits[Math.floor(Math.random() * response.data.hits.length)]
       let photoURL = hit.webformatURL;
