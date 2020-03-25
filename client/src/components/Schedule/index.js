@@ -55,8 +55,7 @@ class Schedule extends Component {
               <h4>
                   <b>{greeting}</b>, {user.name.split(" ")[0]} <br></br>
                   <p className="small text-secondary">
-                      You are logged into the {" "}
-                      <span style={{ fontFamily: "monospace"}}>EMPLOYEE</span> dashboard.
+                    You're viewing the approved schedule.
                   </p>
               </h4>
           </div>
