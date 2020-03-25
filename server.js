@@ -9,7 +9,7 @@ const path = require('path');
 const users = require("./routes/api/users");
 const workdays = require("./routes/api/workdays");
 
-const routes = require("./routes");
+const routes = require("./routes")(app);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
