@@ -30,8 +30,8 @@ require("./config/passport")(passport);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
-  app.get("/*", function(req, res) {
-    res.sendFile(path.join(__dirname, "build", "index.html"), function(err) {
+  app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"), function(err) {
       if (err) {
         res.status(500).send(err)
       }
