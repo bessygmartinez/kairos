@@ -9,7 +9,7 @@ const path = require('path');
 const users = require("./routes/api/users");
 const workdays = require("./routes/api/workdays");
 
-const routes = require("./routes")(app);
+const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -31,13 +31,13 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-  app.get("*", function(req, res) {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"), function(err) {
-      if (err) {
-        res.status(500).send(err)
-      }
-    })
-  })
+  // app.get("*", function(req, res) {
+  //   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"), function(err) {
+  //     if (err) {
+  //       res.status(500).send(err)
+  //     }
+  //   })
+  // })
 
 // Add routes, both API and view
 app.use("/api/workdays", workdays);
