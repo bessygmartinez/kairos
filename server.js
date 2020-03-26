@@ -42,6 +42,7 @@ require("./config/passport")(passport);
 // Add routes, both API and view
 app.use("/api/workdays", workdays);
 app.use("/api/users", users);
+app.use(routes);
 
 //DB Config
 const db = process.env.MONGODB_URI;
