@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Moment from "react-moment";
 import usersAPI from "../utils/usersAPI";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { logoutUser } from "../Actions/authActions";
 import ManagerDashboard from "../components/Dashboard/ManagerDashboard";
 import EmployeeDashboard from "../components/Dashboard/EmployeeDashboard";
@@ -196,4 +196,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser })(ViewAccounts);
+export default connect(mapStateToProps, { logoutUser })(withRouter(ViewAccounts));
