@@ -28,19 +28,14 @@ require("./config/passport")(passport);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  let protected = 'kairos_favicon.png';
-
-  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use(express.static(path.join(__dirname, "../client/build")));
 
   app.get("*", function(req, res) {
-    let path = req.params['0'].substring(1)
-    
-    if (protected.includes(path)) {
-      res.sendFile(`${__dirname}/build${path}`);
-    } else {
-      res.sendFile(path.join(`${__dirname}/client/build/index.html`))
-    }
-    
+    res.sendFile(path.join(`${__dirname}../client/build/index.html`), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
   })
 }
 
