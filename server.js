@@ -37,7 +37,7 @@ app.use("/api/users", users);
 app.use(routes);
 
 //DB Config
-const db = process.env.MONGODB_URI;
+const db = process.env.DB_URI;
 
 // Connect to the Mongo DB
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true })
