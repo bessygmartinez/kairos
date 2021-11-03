@@ -35,6 +35,6 @@
     "path": "^0.12.7",
     "react-big-calendar": "^0.24.0",
     "react-moment": "^0.9.7",
-    "validator": "^12.2.0"
+    "validator": "^13.7.0"
   }
 }
